@@ -20,10 +20,10 @@ I think the first game I'll build using this game engine will be a 2D tower defe
 
 ### Project to do:
 
--[x] Use Vite (WIP)
--[ ] Remove namespaces and switch to modules.
--[ ] Update all undefined checks to null checks and make use of the new TS features.
--[ ] Ship package to github packages.
+- [x] Use Vite (WIP)
+- [x] Update all undefined checks to null checks and make use of the new TS features.
+- [x] Remove namespaces and switch to modules.
+- [ ] Ship package to github packages.
 
 ### Engine to do:
 

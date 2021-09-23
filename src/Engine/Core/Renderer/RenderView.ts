@@ -1,17 +1,16 @@
-namespace NT {
+import { Material } from '../Graphics/Material'
+import { Matrix4x4 } from '../Math/Matrix4x4'
 
-    export class RenderView {
+export class RenderView {
+  public viewMatrix: Matrix4x4
+  public projectionMatrix: Matrix4x4
 
-        public viewMatrix: Matrix4x4;
-        public projectionMatrix: Matrix4x4;
+  public fov: number
+  public shortenZNear: boolean
+  public flipProjection: boolean
 
-        public fov: number;
-        public shortenZNear: boolean;
-        public flipProjection: boolean;
+  public deltaTime: number
 
-        public deltaTime: number;
-
-        // An override material used to render everything. Default: undefined.
-        public globalMaterial: Material;
-    }
+  // An override material used to render everything. Default: null.
+  public globalMaterial: Material | null
 }

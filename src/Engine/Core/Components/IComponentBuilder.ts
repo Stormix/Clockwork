@@ -1,15 +1,13 @@
-﻿namespace NT {
+﻿import { IComponent } from './IComponent'
 
-    /** A builder which is used for component creation. */
-    export interface IComponentBuilder {
+/** A builder which is used for component creation. */
+export interface IComponentBuilder {
+  /** The type of component. */
+  readonly type: string
 
-        /** The type of component. */
-        readonly type: string;
-
-        /**
-         * Builds a compoent from the provided json.
-         * @param json The json to build from.
-         */
-        buildFromJson( json: any ): IComponent;
-    }
+  /**
+   * Builds a compoent from the provided json.
+   * @param json The json to build from.
+   */
+  buildFromJson(json: any): IComponent
 }

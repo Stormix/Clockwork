@@ -1,4 +1,4 @@
-namespace NT {
+
 
     /**
      * A dictionary which uses a string key type.

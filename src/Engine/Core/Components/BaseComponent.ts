@@ -1,58 +1,54 @@
-﻿namespace NT {
+﻿import { RenderView } from '../Renderer/RenderView'
+import { TEntity } from '../World/TEntity'
+import { IComponent } from './IComponent'
+import { IComponentData } from './IComponentData'
 
+export abstract class BaseComponent implements IComponent {
+  /** The owning entity. */
+  protected _owner: TEntity
+  protected _data: IComponentData
 
-    export abstract class BaseComponent implements IComponent {
+  /**
+   * The name of this component.
+   */
+  public name: string
 
-        /** The owning entity. */
-        protected _owner: TEntity;
-        protected _data: IComponentData;
+  /**
+   * Creates a new BaseComponent.
+   * @param data The data for this component.
+   */
+  public constructor(data: IComponentData) {
+    this._data = data
+    this.name = data.name
+  }
 
-        /**
-         * The name of this component.
-         */
-        public name: string;
+  /** The owning entity. */
+  public get owner(): TEntity {
+    return this._owner
+  }
 
-        /**
-         * Creates a new BaseComponent.
-         * @param data The data for this component.
-         */
-        public constructor( data: IComponentData ) {
-            this._data = data;
-            this.name = data.name;
-        }
+  /**
+   * Sets the owner of this component.
+   * @param owner The owner to be set.
+   */
+  public setOwner(owner: TEntity): void {
+    this._owner = owner
+  }
 
-        /** The owning entity. */
-        public get owner(): TEntity {
-            return this._owner;
-        }
+  /** Loads this component. */
+  public load(): void {}
 
-        /**
-         * Sets the owner of this component.
-         * @param owner The owner to be set.
-         */
-        public setOwner( owner: TEntity ): void {
-            this._owner = owner;
-        }
+  /** Performs pre-update procedures on this component. */
+  public updateReady(): void {}
 
-        /** Loads this component. */
-        public load(): void {
-        }
+  /**
+   * Updates this component.
+   * @param time The amount of time in milliseconds since the last update.
+   */
+  public update(time: number): void {}
 
-        /** Performs pre-update procedures on this component. */
-        public updateReady(): void {
-        }
-
-        /**
-         * Updates this component.
-         * @param time The amount of time in milliseconds since the last update.
-         */
-        public update( time: number ): void {
-        }
-
-        /**
-         * Renders this component.
-         */
-        public render( renderView: RenderView ): void {
-        }
-    }
+  /**
+   * Renders this component.
+   */
+  public render(renderView: RenderView): void {}
 }
