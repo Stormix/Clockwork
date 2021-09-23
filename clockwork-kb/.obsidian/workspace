@@ -1,0 +1,93 @@
+{
+  "main": {
+    "id": "eaec9a3e628983f7",
+    "type": "split",
+    "children": [
+      {
+        "id": "677e8dd5066b2072",
+        "type": "leaf",
+        "state": {
+          "type": "empty",
+          "state": {}
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "c9da78f037b5debd",
+    "type": "split",
+    "children": [
+      {
+        "id": "45722777b05c30a2",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "ced24d5dc1da3ad9",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "90b1b3278c5b5c31",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "fcebed1b669b7c86",
+    "type": "split",
+    "children": [
+      {
+        "id": "416ea7086649548f",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "47b0645c9cdef841",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "active": "677e8dd5066b2072",
+  "lastOpenFiles": [
+    "Game Engine/Introduction.md",
+    "Game Engine/Resources.md",
+    "Game Engine/Overview.md",
+    "Untitled.md",
+    "Game Engine/Goal.md"
+  ]
+}
