@@ -1,9 +1,9 @@
-﻿import { Vector3 } from '../Math/Vector3'
-import { BaseBehavior } from './BaseBehavior'
-import { BehaviorManager } from './BehaviorManager'
-import { IBehavior } from './IBehavior'
-import { IBehaviorBuilder } from './IBehaviorBuilder'
-import { IBehaviorData } from './IBehaviorData'
+﻿import { Vector3 } from '../Math/'
+import { BaseBehavior } from './'
+import { BehaviorManager } from './'
+import { IBehavior } from './'
+import { IBehaviorBuilder } from './'
+import { IBehaviorData } from './'
 
 /**
  * The data for a rotation behavior.
@@ -20,13 +20,13 @@ export class RotationBehaviorData implements IBehaviorData {
    * @param json The json to set from.
    */
   public setFromJson(json: any): void {
-    if (json.name === undefined) {
+    if (!json?.name) {
       throw new Error('Name must be defined in behavior data.')
     }
 
     this.name = String(json.name)
 
-    if (json.rotation !== undefined) {
+    if (json?.rotation) {
       this.rotation.setFromJson(json.rotation)
     }
   }

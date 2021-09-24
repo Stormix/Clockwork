@@ -1,13 +1,13 @@
-﻿import { GLBuffer, AttributeInfo } from '../GL/GLBuffer'
-import { BuiltinShader } from '../GL/Shader'
-import { Matrix4x4 } from '../Math/Matrix4x4'
-import { Vector3 } from '../Math/Vector3'
-import { BitmapFont } from './BitmapFont'
-import { BitmapFontManager } from './BitmapFontManager'
-import { Color } from './Color'
-import { Material } from './Material'
-import { ShaderManager } from './ShaderManager'
-import { Vertex } from './Vertex'
+﻿import { GLBuffer, AttributeInfo } from '../GL/'
+import { BuiltinShader } from '../GL/'
+import { Matrix4x4 } from '../Math/'
+import { Vector3 } from '../Math/'
+import { BitmapFont } from './'
+import { BitmapFontManager } from './'
+import { Color } from './'
+import { Material } from './'
+import { ShaderManager } from './'
+import { Vertex } from './'
 
 /**
  * A bitmap text graphics object which is responsible for the underlying rendering
@@ -80,7 +80,7 @@ export class BitmapText {
 
     // TODO: probably need a simpler shader for UI elements such as this.
     const shader = ShaderManager.GetShader(BuiltinShader.BASIC)
-    if (shader === undefined) {
+    if (!shader) {
       throw new Error('Unable to basic builtin shader.')
     }
     this._material = new Material(

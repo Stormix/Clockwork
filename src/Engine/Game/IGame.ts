@@ -1,3 +1,5 @@
+import { RenderView } from '../Core/Renderer'
+
 /**
  * An interface which represents an object that holds game-specific information.
  * Used for loading the first/initial level, etc. Each game should implement

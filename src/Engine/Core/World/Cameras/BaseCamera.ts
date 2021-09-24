@@ -1,6 +1,6 @@
-import { Matrix4x4 } from '../../Math/Matrix4x4'
-import { SceneGraph } from '../SceneGraph'
-import { TEntity } from '../TEntity'
+import { TEntity } from '../'
+import { SceneGraph } from '../'
+import { Matrix4x4 } from '../../Math/'
 
 /**
  * The base class from which all cameras should inherit.

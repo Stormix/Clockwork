@@ -1,4 +1,4 @@
-﻿import { gl } from './GLUtilities'
+﻿import { gl } from './'
 
 /**
  * Represents the information needed for a GLBuffer attribute.

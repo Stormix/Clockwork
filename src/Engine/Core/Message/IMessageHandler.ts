@@ -1,4 +1,4 @@
-﻿import { Message } from './Message'
+﻿import { Message } from './'
 
 /**
  * Anb interface which provides a message handler for objects which are

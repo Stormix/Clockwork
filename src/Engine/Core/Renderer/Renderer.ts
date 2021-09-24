@@ -1,7 +1,7 @@
 import { IGame } from '../../Game/IGame'
-import { gl } from '../GL/GLUtilities'
-import { Matrix4x4 } from '../Math/Matrix4x4'
-import { LevelManager } from '../World/LevelManager'
+import { gl } from '../GL/'
+import { Matrix4x4 } from '../Math/'
+import { LevelManager } from '../World/'
 import {
   RendererViewport,
   RendererViewportCreateInfo,
@@ -73,7 +73,7 @@ export class Renderer {
 
   private renderWorld(): void {
     // If there is an active level loaded, generate a render view and pass it through.
-    if (LevelManager.isLoaded && LevelManager.activeLevel !== undefined) {
+    if (LevelManager.isLoaded && LevelManager.activeLevel ) {
       const view =
         LevelManager.activeLevel?.activeCamera?.view ?? this._defaultView
 

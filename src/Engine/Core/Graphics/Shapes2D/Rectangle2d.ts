@@ -1,6 +1,6 @@
-﻿import { Vector2 } from '../../Math/Vector2'
-import { Circle2D } from './Circle2D'
-import { IShape2D } from './IShape2D'
+﻿import { Vector2 } from '../../Math/'
+import { Circle2D } from './'
+import { IShape2D } from './'
 
 /** Represents a 2D rectangle. */
 export class Rectangle2D implements IShape2D {
@@ -40,20 +40,20 @@ export class Rectangle2D implements IShape2D {
    * @param json The json to set from.
    */
   public setFromJson(json: any): void {
-    if (json.position !== undefined) {
+    if (json.position) {
       this.position.setFromJson(json.position)
     }
 
-    if (json.origin !== undefined) {
+    if (json.origin) {
       this.origin.setFromJson(json.origin)
     }
 
-    if (json.width === undefined) {
+    if (!json?.width) {
       throw new Error('Rectangle2D requires width to be present.')
     }
     this.width = Number(json.width)
 
-    if (json.height === undefined) {
+    if (!json?.height) {
       throw new Error('Rectangle2D requires height to be present.')
     }
     this.height = Number(json.height)

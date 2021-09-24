@@ -1,5 +1,4 @@
-﻿import { Vector2 } from '../Math/Vector2'
-import { Vector3 } from '../Math/Vector3'
+﻿import { Vector2, Vector3 } from '../Math/'
 
 /**
  * Represents the data for a single vertex. A vertex is a single point in space which holds

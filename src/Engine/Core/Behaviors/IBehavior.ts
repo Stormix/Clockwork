@@ -1,4 +1,4 @@
-﻿import { TEntity } from '../World/TEntity'
+﻿import { TEntity } from '../World/'
 
 /**
  * Represents a behavior, which can be attached to a TEntity. Behaviors do not get rendered,

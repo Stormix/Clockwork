@@ -1,13 +1,13 @@
-﻿import { BitmapText } from '../Graphics/BitmapText'
-import { Vector3 } from '../Math/Vector3'
-import { IMessageHandler } from '../Message/IMessageHandler'
-import { Message } from '../Message/Message'
-import { RenderView } from '../Renderer/RenderView'
-import { BaseComponent } from './BaseComponent'
-import { ComponentManager } from './ComponentManager'
-import { IComponent } from './IComponent'
-import { IComponentBuilder } from './IComponentBuilder'
-import { IComponentData } from './IComponentData'
+﻿import { BitmapText } from '../Graphics/'
+import { Vector3 } from '../Math/'
+import { IMessageHandler } from '../Message/'
+import { Message } from '../Message/'
+import { RenderView } from '../Renderer/'
+import { BaseComponent } from './'
+import { ComponentManager } from './'
+import { IComponent } from './'
+import { IComponentBuilder } from './'
+import { IComponentData } from './'
 
 export class BitmapTextComponentData implements IComponentData {
   public name: string
@@ -16,19 +16,19 @@ export class BitmapTextComponentData implements IComponentData {
   public text: string
 
   public setFromJson(json: any): void {
-    if (json.name !== undefined) {
+    if (json.name ) {
       this.name = String(json.name)
     }
 
-    if (json.fontName !== undefined) {
+    if (json.fontName ) {
       this.fontName = String(json.fontName)
     }
 
-    if (json.text !== undefined) {
+    if (json.text ) {
       this.text = String(json.text)
     }
 
-    if (json.origin !== undefined) {
+    if (json.origin ) {
       this.origin.setFromJson(json.origin)
     }
   }

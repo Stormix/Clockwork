@@ -1,5 +1,5 @@
-﻿import { IMessageHandler } from './IMessageHandler'
-import { Message } from './Message'
+﻿import { IMessageHandler } from './'
+import { Message } from './'
 
 /** A message callback function pointer type. */
 export type MessageCallback = (message: Message) => void

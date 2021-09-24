@@ -1,4 +1,4 @@
-﻿import { IBehavior } from './IBehavior'
+﻿import { IBehavior } from './'
 
 /**
  * An interface for a behavior builder.

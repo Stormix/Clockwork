@@ -1,11 +1,11 @@
 ﻿/* eslint-disable @typescript-eslint/adjacent-overload-signatures */
-import { Shader, BuiltinShader } from '../GL/Shader'
-import { Matrix4x4 } from '../Math/Matrix4x4'
-import { Color } from './Color'
-import { MaterialConfig } from './MaterialManager'
-import { ShaderManager } from './ShaderManager'
-import { Texture } from './Texture'
-import { TextureManager } from './TextureManager'
+import { Shader, BuiltinShader } from '../GL/'
+import { Matrix4x4 } from '../Math/'
+import { Color } from './'
+import { MaterialConfig } from './'
+import { ShaderManager } from './'
+import { Texture } from './'
+import { TextureManager } from './'
 
 /** A material represents surface information which is used during rendering. */
 export class Material {
@@ -34,7 +34,7 @@ export class Material {
     this._diffuseTextureName = diffuseTextureName
     this._tint = tint
 
-    if (this._diffuseTextureName !== undefined) {
+    if (this._diffuseTextureName) {
       this._diffuseTexture = TextureManager.getTexture(this._diffuseTextureName)
     }
   }
@@ -46,9 +46,9 @@ export class Material {
   public static FromConfig(config: MaterialConfig): Material {
     const name = config.shader ? config.shader : BuiltinShader.BASIC
     const shader = ShaderManager.GetShader(name)
-    if (shader === undefined) {
+    if (!shader) {
       throw new Error(
-        'Unable to create material using material named ${name} as it is undefined.',
+        'Unable to create material using material named ${name} as it is null or undefined.',
       )
     }
     return new Material(config.name, shader, config.diffuse, config.tint)
@@ -86,13 +86,13 @@ export class Material {
 
   /** Sets the diffuse texture name, which triggers a texture load if need be. */
   public set diffuseTextureName(value: string) {
-    if (this._diffuseTexture !== undefined) {
+    if (this._diffuseTexture) {
       TextureManager.releaseTexture(this._diffuseTextureName)
     }
 
     this._diffuseTextureName = value
 
-    if (this._diffuseTextureName !== undefined) {
+    if (this._diffuseTextureName) {
       this._diffuseTexture = TextureManager.getTexture(this._diffuseTextureName)
     }
   }

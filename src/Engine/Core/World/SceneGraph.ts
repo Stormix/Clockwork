@@ -1,5 +1,5 @@
-﻿import { RenderView } from '../Renderer/RenderView'
-import { TEntity } from './TEntity'
+﻿import { RenderView } from '../Renderer/'
+import { TEntity } from './'
 
 /**
  * A scene graph, which is responsible for managing the heirarchy of objects in a scene (essentially,

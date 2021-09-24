@@ -1,5 +1,5 @@
-﻿import { Matrix4x4 } from './Matrix4x4'
-import { Vector3 } from './Vector3'
+﻿import { Matrix4x4 } from './'
+import { Vector3 } from './'
 
 /**
  * Represents the transformation of an object, providing position, rotation and scale.
@@ -46,15 +46,15 @@ export class Transform {
    * @param json The JSON to set from.
    */
   public setFromJson(json: any): void {
-    if (json.position !== undefined) {
+    if (json.position ) {
       this.position.setFromJson(json.position)
     }
 
-    if (json.rotation !== undefined) {
+    if (json.rotation ) {
       this.rotation.setFromJson(json.rotation)
     }
 
-    if (json.scale !== undefined) {
+    if (json.scale ) {
       this.scale.setFromJson(json.scale)
     }
   }

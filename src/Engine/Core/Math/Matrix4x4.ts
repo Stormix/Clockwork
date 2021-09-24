@@ -1,4 +1,4 @@
-﻿import { Vector3 } from './Vector3'
+﻿import { Vector3 } from './'
 
 /** A 4x4 matrix to be used for transformations. */
 export class Matrix4x4 {

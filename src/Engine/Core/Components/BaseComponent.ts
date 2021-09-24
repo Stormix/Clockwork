@@ -1,7 +1,7 @@
-﻿import { RenderView } from '../Renderer/RenderView'
-import { TEntity } from '../World/TEntity'
-import { IComponent } from './IComponent'
-import { IComponentData } from './IComponentData'
+﻿import { RenderView } from '../Renderer/'
+import { TEntity } from '../World/'
+import { IComponent } from './'
+import { IComponentData } from './'
 
 export abstract class BaseComponent implements IComponent {
   /** The owning entity. */

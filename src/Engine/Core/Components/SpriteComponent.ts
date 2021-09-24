@@ -1,11 +1,11 @@
-﻿import { Sprite } from '../Graphics/Sprite'
-import { Vector3 } from '../Math/Vector3'
-import { RenderView } from '../Renderer/RenderView'
-import { BaseComponent } from './BaseComponent'
-import { ComponentManager } from './ComponentManager'
-import { IComponent } from './IComponent'
-import { IComponentBuilder } from './IComponentBuilder'
-import { IComponentData } from './IComponentData'
+﻿import { IComponent } from './'
+import { IComponentData } from './'
+import { IComponentBuilder } from './'
+import { Sprite } from '../Graphics/'
+import { Vector3 } from '../Math/'
+import { RenderView } from '../Renderer/'
+import { BaseComponent } from './'
+import { ComponentManager } from './'
 
 /**
  * The data for a sprite component.
@@ -18,23 +18,23 @@ export class SpriteComponentData implements IComponentData {
   public height: number
 
   public setFromJson(json: any): void {
-    if (json.name !== undefined) {
+    if (json.name ) {
       this.name = String(json.name)
     }
 
-    if (json.width !== undefined) {
+    if (json.width ) {
       this.width = Number(json.width)
     }
 
-    if (json.height !== undefined) {
+    if (json.height ) {
       this.height = Number(json.height)
     }
 
-    if (json.materialName !== undefined) {
+    if (json.materialName ) {
       this.materialName = String(json.materialName)
     }
 
-    if (json.origin !== undefined) {
+    if (json.origin ) {
       this.origin.setFromJson(json.origin)
     }
   }

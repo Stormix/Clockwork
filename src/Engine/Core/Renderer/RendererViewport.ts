@@ -1,7 +1,7 @@
-import { GLUtilities, gl } from '../GL/GLUtilities'
-import { InputManager } from '../Input/InputManager'
-import { Matrix4x4 } from '../Math/Matrix4x4'
-import { Vector2 } from '../Math/Vector2'
+import { GLUtilities, gl } from '../GL/'
+import { InputManager } from '../Input/'
+import { Matrix4x4 } from '../Math/'
+import { Vector2 } from '../Math/'
 
 /** Indicates the type of projection used by a viewport. */
 export enum ViewportProjectionType {
@@ -46,7 +46,7 @@ export class RendererViewportCreateInfo {
   /** The type of projection used by this viewport. */
   public projectionType: ViewportProjectionType
 
-  /** The element id of the HTMLCanvasElement to use. If undefined, one will be created dynamically. */
+  /** The element id of the HTMLCanvasElement to use. If null or undefined, one will be created dynamically. */
   public elementId?: string
 }
 
@@ -83,7 +83,7 @@ export class RendererViewport {
     this._fov = createInfo.fov ?? 0
     this._projectionType = createInfo.projectionType
 
-    if (this._width !== undefined && this._height !== undefined) {
+    if (this._width && this._height) {
       //this._aspect = this._width / this._height;
       this._sizeMode = ViewportSizeMode.FIXED
     }
@@ -170,7 +170,7 @@ export class RendererViewport {
 
   /** Returns the appropriate projection matrix for this viewport. */
   public GetProjectionMatrix(): Matrix4x4 {
-    if (this._isDirty || this._projection === undefined) {
+    if (this._isDirty || !this?._projection) {
       this.regenerateMatrix()
     }
     return this._projection
@@ -186,7 +186,7 @@ export class RendererViewport {
     this._height = height
     this._isDirty = true
 
-    if (this._canvas !== undefined) {
+    if (this._canvas) {
       if (this._sizeMode === ViewportSizeMode.DYNAMIC) {
         // Adjust the viewport to fill the screen.
         this._canvas.width = window.innerWidth

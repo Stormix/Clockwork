@@ -109,7 +109,7 @@ export class TargaProcessor {
       throw new Error('Targa - No data.')
     }
 
-    let palette: Uint8ClampedArray
+    let palette = new Uint8ClampedArray()
     if (header.hasColorMap) {
       const colorMapSize = header.colorMapLength * (header.colorMapDepth >> 3)
       palette = new Uint8ClampedArray(

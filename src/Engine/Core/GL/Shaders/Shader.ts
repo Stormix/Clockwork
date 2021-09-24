@@ -1,8 +1,8 @@
-﻿import { Color } from '../Graphics/Color'
-import { Material } from '../Graphics/Material'
-import { ShaderManager } from '../Graphics/ShaderManager'
-import { Matrix4x4 } from '../Math/Matrix4x4'
-import { gl } from './GLUtilities'
+﻿import { Color } from '../../Graphics/'
+import { Material } from '../../Graphics/'
+import { ShaderManager } from '../../Graphics/'
+import { Matrix4x4 } from '../../Math/'
+import { gl } from '../'
 
 export enum BuiltinShader {
   BASIC = 'basic',
@@ -48,7 +48,7 @@ export abstract class Shader {
   }
 
   public SetUniformMatrix4x4(uniformName: string, matrix: Matrix4x4): void {
-    if (this._uniforms[uniformName] === undefined) {
+    if (!this._uniforms?.[uniformName]) {
       console.warn(
         `Unable to find uniform named '${uniformName}' in shader named '${this._name}'`,
       )
@@ -60,7 +60,7 @@ export abstract class Shader {
   }
 
   public SetUniformColor(uniformName: string, color: Color): void {
-    if (this._uniforms[uniformName] === undefined) {
+    if (!this._uniforms?.[uniformName]) {
       console.warn(
         `Unable to find uniform named '${uniformName}' in shader named '${this._name}'`,
       )
@@ -72,7 +72,7 @@ export abstract class Shader {
   }
 
   public SetUniformInt(uniformName: string, value: number): void {
-    if (this._uniforms[uniformName] === undefined) {
+    if (!this._uniforms?.[uniformName]) {
       console.warn(
         `Unable to find uniform named '${uniformName}' in shader named '${this._name}'`,
       )
@@ -88,7 +88,7 @@ export abstract class Shader {
    * @param name The name of the attribute whose location to retrieve.
    */
   public getAttributeLocation(name: string): number {
-    if (this._attributes[name] === undefined) {
+    if (!this._attributes?.[name]) {
       throw new Error(
         `Unable to find attribute named '${name}' in shader named '${this._name}'`,
       )
@@ -102,7 +102,7 @@ export abstract class Shader {
    * @param name The name of the uniform whose location to retrieve.
    */
   public getUniformLocation(name: string): WebGLUniformLocation {
-    if (this._uniforms[name] === undefined) {
+    if (!this._uniforms?.[name]) {
       throw new Error(
         `Unable to find uniform named '${name}' in shader named '${this._name}'`,
       )

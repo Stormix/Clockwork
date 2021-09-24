@@ -1,5 +1,5 @@
-﻿import { Vector2 } from '../Math/Vector2'
-import { Message } from '../Message/Message'
+﻿import { Vector2 } from '../Math'
+import { Message } from '../Message'
 
 /** The message code for mouse down events. */
 export const MESSAGE_MOUSE_DOWN = 'MOUSE_DOWN'

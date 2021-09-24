@@ -1,4 +1,4 @@
-﻿import { Vector2 } from '../../Math/Vector2'
+﻿import { Vector2 } from '../../Math/'
 
 /** Represents a basic 2D shape. */
 export interface IShape2D {

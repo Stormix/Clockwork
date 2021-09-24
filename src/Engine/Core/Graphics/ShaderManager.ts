@@ -1,5 +1,5 @@
-import { Shader } from '../GL/Shader'
-import { BasicShader } from '../GL/Shaders/BasicShader'
+import { Shader } from '../GL/'
+import { BasicShader } from '../GL/'
 import { Dictionary } from '../Types'
 
 /**
@@ -52,7 +52,7 @@ export class ShaderManager {
    * @param shader The shader to be registered.
    */
   public static Register(shader: Shader): void {
-    if (ShaderManager._shaders[shader.name] !== undefined) {
+    if (ShaderManager._shaders[shader.name]) {
       console.warn(
         `A shader named ${shader.name} already exists and will not be re-registered.`,
       )
@@ -62,12 +62,12 @@ export class ShaderManager {
   }
 
   /**
-   * Gets a Shader with the given name. This is case-sensitive. If no Shader is found, undefined is returned.
+   * Gets a Shader with the given name. This is case-sensitive. If no Shader is found, null is returned.
    * Also increments the reference count by 1.
    * @param shaderName The name of the shader to get. If one is not found, a new one is created, using this as the Shader path.
    */
   public static GetShader(shaderName: string): Shader {
-    if (ShaderManager._shaders[shaderName] !== undefined) {
+    if (ShaderManager._shaders[shaderName]) {
       ShaderManager._shaders[shaderName].referenceCount++
     }
 
@@ -80,7 +80,7 @@ export class ShaderManager {
    * @param shaderName The name of the Shader to be released.
    */
   public static ReleaseShader(shaderName: string): void {
-    if (ShaderManager._shaders[shaderName] === undefined) {
+    if (!ShaderManager._shaders?.[shaderName]) {
       console.warn(
         `A shader named ${shaderName} does not exist and therefore cannot be released.`,
       )

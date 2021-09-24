@@ -1,4 +1,4 @@
-﻿import { Texture } from './Texture'
+﻿import { Texture } from './'
 
 /**
  * Holds reference information for a given Texture.

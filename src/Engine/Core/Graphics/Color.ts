@@ -103,16 +103,16 @@ export class Color {
    */
   public static fromJson(json: any): Color {
     const c = new Color()
-    if (json.r !== undefined) {
+    if (json.r ) {
       c.r = Number(json.r)
     }
-    if (json.g !== undefined) {
+    if (json.g ) {
       c.g = Number(json.g)
     }
-    if (json.b !== undefined) {
+    if (json.b ) {
       c.b = Number(json.b)
     }
-    if (json.a !== undefined) {
+    if (json.a ) {
       c.a = Number(json.a)
     }
     return c

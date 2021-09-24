@@ -9,18 +9,18 @@
 //         public static: boolean = true;
 
 //         public setFromJson( json: any ): void {
-//             if ( json.name !== undefined ) {
+//             if ( json.name  ) {
 //                 this.name = String( json.name );
 //             }
 
-//             if ( json.static !== undefined ) {
+//             if ( json.static  ) {
 //                 this.static = Boolean( json.static );
 //             }
 
-//             if ( json.shape === undefined ) {
+//             if ( !json?.shape ) {
 //                 throw new Error( "CollisionComponentData requires 'shape' to be present." );
 //             } else {
-//                 if ( json.shape.type === undefined ) {
+//                 if (!json.shape?.type) {
 //                     throw new Error( "CollisionComponentData requires 'shape.type' to be present." );
 //                 }
 

@@ -1,9 +1,9 @@
-﻿import { GLBuffer, AttributeInfo } from '../GL/GLBuffer'
-import { Matrix4x4 } from '../Math/Matrix4x4'
-import { Vector3 } from '../Math/Vector3'
-import { Material } from './Material'
-import { MaterialManager } from './MaterialManager'
-import { Vertex } from './Vertex'
+﻿import { GLBuffer, AttributeInfo } from '../GL'
+import { Matrix4x4 } from '../Math'
+import { Vector3 } from '../Math'
+import { Material } from './'
+import { MaterialManager } from './'
+import { Vertex } from './'
 
 /**
  * Represents a 2-dimensional sprite which is drawn on the screen.

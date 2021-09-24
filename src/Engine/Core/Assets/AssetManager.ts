@@ -1,9 +1,9 @@
-﻿import { Message } from '../Message/Message'
-import { IAsset } from './IAsset'
-import { IAssetLoader } from './IAssetLoader'
-import { ImageAssetLoader } from './ImageAssetLoader'
-import { JsonAssetLoader } from './JsonAssetLoader'
-import { TextAssetLoader } from './TestAssetLoader'
+﻿import { Message } from '../Message/'
+import { IAsset } from './'
+import { IAssetLoader } from './'
+import { ImageAssetLoader } from './'
+import { JsonAssetLoader } from './'
+import { TextAssetLoader } from './'
 
 /**
  * The message code prefix for asset load notifications.
@@ -68,7 +68,7 @@ export class AssetManager {
    * @param assetName The asset name to check.
    */
   public static isAssetLoaded(assetName: string): boolean {
-    return AssetManager._loadedAssets[assetName] !== undefined
+    return !!AssetManager._loadedAssets[assetName]
   }
 
   /**
@@ -76,7 +76,7 @@ export class AssetManager {
    * @param assetName The asset name to get.
    */
   public static getAsset(assetName: string): IAsset | null {
-    if (AssetManager._loadedAssets[assetName] !== undefined) {
+    if (AssetManager._loadedAssets[assetName]) {
       return AssetManager._loadedAssets[assetName]
     } else {
       AssetManager.loadAsset(assetName)

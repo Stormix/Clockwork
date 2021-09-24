@@ -1,6 +1,6 @@
-﻿import { Material } from '../../Graphics/Material'
-import { Matrix4x4 } from '../../Math/Matrix4x4'
-import { Shader, BuiltinShader } from '../Shader'
+﻿import { Shader, BuiltinShader } from './'
+import { Material } from '../../Graphics/'
+import { Matrix4x4 } from '../../Math/'
 
 /**
  * A basic shader that can be used for 2D games.
@@ -25,7 +25,7 @@ export class BasicShader extends Shader {
 
     // // Use the active camera's matrix as the view
     // let view: Matrix4x4;
-    // if ( LevelManager.isLoaded && LevelManager.activeLevelActiveCamera !== undefined ) {
+    // if ( LevelManager.isLoaded && LevelManager.activeLevelActiveCamera  ) {
     //     view = LevelManager.activeLevelActiveCamera.view;
     // } else {
     //     view = Matrix4x4.identity();
@@ -39,8 +39,8 @@ export class BasicShader extends Shader {
     this.SetUniformMatrix4x4('u_projection', projection)
     this.SetUniformColor('u_tint', material.tint)
 
-    if (material.diffuseTexture !== undefined) {
-      material.diffuseTexture.activateAndBind(0)
+    if (material.diffuseTexture ) {
+      material.diffuseTexture?.activateAndBind(0)
       this.SetUniformInt('u_diffuse', 0)
     }
   }

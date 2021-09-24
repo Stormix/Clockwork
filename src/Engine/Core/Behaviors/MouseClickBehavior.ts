@@ -1,11 +1,11 @@
-﻿import { MESSAGE_MOUSE_UP, MouseContext } from '../Input/InputManager'
-import { IMessageHandler } from '../Message/IMessageHandler'
-import { Message } from '../Message/Message'
-import { BaseBehavior } from './BaseBehavior'
-import { BehaviorManager } from './BehaviorManager'
-import { IBehavior } from './IBehavior'
-import { IBehaviorBuilder } from './IBehaviorBuilder'
-import { IBehaviorData } from './IBehaviorData'
+﻿import { MESSAGE_MOUSE_UP, MouseContext } from '../Input/'
+import { IMessageHandler } from '../Message/'
+import { Message } from '../Message/'
+import { BaseBehavior } from './'
+import { BehaviorManager } from './'
+import { IBehavior } from './'
+import { IBehaviorBuilder } from './'
+import { IBehaviorData } from './'
 
 /**
  * The data for a mouse click behavior.
@@ -28,25 +28,25 @@ export class MouseClickBehaviorData implements IBehaviorData {
    * @param json The json to set from.
    */
   public setFromJson(json: any): void {
-    if (json.name === undefined) {
+    if (!json?.name) {
       throw new Error('Name must be defined in behavior data.')
     }
 
     this.name = String(json.name)
 
-    if (json.width === undefined) {
+    if (!json?.width) {
       throw new Error('width must be defined in behavior data.')
     } else {
       this.width = Number(json.width)
     }
 
-    if (json.height === undefined) {
+    if (!json?.height) {
       throw new Error('height must be defined in behavior data.')
     } else {
       this.height = Number(json.height)
     }
 
-    if (json.messageCode === undefined) {
+    if (!json?.messageCode) {
       throw new Error('messageCode must be defined in behavior data.')
     } else {
       this.messageCode = String(json.messageCode)

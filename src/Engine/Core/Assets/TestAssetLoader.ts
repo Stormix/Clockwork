@@ -1,6 +1,6 @@
-﻿import { AssetManager } from './AssetManager'
-import { IAsset } from './IAsset'
-import { IAssetLoader } from './IAssetLoader'
+﻿import { AssetManager } from './'
+import { IAsset } from './'
+import { IAssetLoader } from './'
 
 /**
  * Represents a text file asset.

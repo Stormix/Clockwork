@@ -1,5 +1,5 @@
-﻿import { IComponent } from './IComponent'
-import { IComponentBuilder } from './IComponentBuilder'
+﻿import { IComponent } from './'
+import { IComponentBuilder } from './'
 
 /**
  * Manages components and their creation.
@@ -20,9 +20,9 @@ export class ComponentManager {
    * @param json The json to extract from.
    */
   public static extractComponent(json: any): IComponent | null {
-    if (json.type !== undefined) {
+    if (json.type ) {
       if (
-        ComponentManager._registeredBuilders[String(json.type)] !== undefined
+        ComponentManager._registeredBuilders[String(json.type)]
       ) {
         return ComponentManager._registeredBuilders[
           String(json.type)

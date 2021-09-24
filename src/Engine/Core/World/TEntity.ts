@@ -1,11 +1,11 @@
-﻿import { IBehavior } from '../Behaviors/IBehavior'
-import { IComponent } from '../Components/IComponent'
-import { Matrix4x4 } from '../Math/Matrix4x4'
-import { Transform } from '../Math/Transform'
-import { Vector3 } from '../Math/Vector3'
-import { TObject } from '../Objects/TObject'
-import { RenderView } from '../Renderer/RenderView'
-import { SceneGraph } from './SceneGraph'
+﻿import { IBehavior } from '../Behaviors/'
+import { IComponent } from '../Components/'
+import { Matrix4x4 } from '../Math/'
+import { Transform } from '../Math/'
+import { Vector3 } from '../Math/'
+import { TObject } from '../Objects/'
+import { RenderView } from '../Renderer/'
+import { SceneGraph } from './'
 
 /**
  * Represents a single entity in the world. TEntities themselves do not get rendered or have behaviors.
@@ -105,7 +105,7 @@ export class TEntity extends TObject {
 
     for (const child of this._children) {
       const component = child.getComponentByName(name)
-      if (component !== undefined) {
+      if (component ) {
         return component
       }
     }
@@ -126,7 +126,7 @@ export class TEntity extends TObject {
 
     for (const child of this._children) {
       const behavior = child.getBehaviorByName(name)
-      if (behavior !== undefined) {
+      if (behavior ) {
         return behavior
       }
     }
@@ -145,7 +145,7 @@ export class TEntity extends TObject {
 
     for (const child of this._children) {
       const result = child.getEntityByName(name)
-      if (result !== undefined) {
+      if (result ) {
         return result
       }
     }

@@ -1,11 +1,8 @@
-﻿import {
-  AssetManager,
-  MESSAGE_ASSET_LOADER_ASSET_LOADED,
-} from '../Assets/AssetManager'
-import { ImageAsset } from '../Assets/ImageAssetLoader'
-import { gl } from '../GL/GLUtilities'
-import { IMessageHandler } from '../Message/IMessageHandler'
-import { Message } from '../Message/Message'
+﻿import { AssetManager, MESSAGE_ASSET_LOADER_ASSET_LOADED } from '../Assets/'
+import { ImageAsset } from '../Assets/'
+import { gl } from '../GL/'
+import { IMessageHandler } from '../Message/'
+import { Message } from '../Message/'
 
 const LEVEL = 0
 const BORDER = 0
@@ -50,7 +47,7 @@ export class Texture implements IMessageHandler {
     )
 
     const asset = AssetManager.getAsset(this.name) as ImageAsset
-    if (asset !== undefined) {
+    if (asset ) {
       this.loadTextureFromAsset(asset)
     } else {
       Message.subscribe(MESSAGE_ASSET_LOADER_ASSET_LOADED + this._name, this)

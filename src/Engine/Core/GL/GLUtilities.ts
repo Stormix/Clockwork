@@ -14,7 +14,7 @@ export class GLUtilities {
   public static Initialize(elementId?: string): HTMLCanvasElement {
     let canvas: HTMLCanvasElement
 
-    if (elementId !== undefined) {
+    if (elementId) {
       canvas = document.getElementById(elementId) as HTMLCanvasElement
       if (canvas === null) {
         throw new Error('Cannot find a canvas element named:' + elementId)
@@ -25,9 +25,9 @@ export class GLUtilities {
     }
 
     gl = canvas.getContext('webgl') as WebGLRenderingContext
-    if (gl === undefined || gl === null) {
+    if (!gl) {
       gl = canvas.getContext('experimental-webgl') as WebGLRenderingContext
-      if (gl === undefined || gl === null) {
+      if (!gl) {
         throw new Error('Unable to initialize WebGL!')
       }
     }

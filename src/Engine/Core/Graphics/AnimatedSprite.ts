@@ -1,13 +1,11 @@
 ﻿import {
   MESSAGE_ASSET_LOADER_ASSET_LOADED,
   AssetManager,
-} from '../Assets/AssetManager'
-import { ImageAsset } from '../Assets/ImageAssetLoader'
-import { Vector2 } from '../Math/Vector2'
-import { IMessageHandler } from '../Message/IMessageHandler'
-import { Message } from '../Message/Message'
-import { MaterialManager } from './MaterialManager'
-import { Sprite } from './Sprite'
+  ImageAsset,
+} from '../Assets/'
+import { Vector2 } from '../Math/'
+import { IMessageHandler, Message } from '../Message/'
+import { MaterialManager, Sprite } from './'
 
 class UVInfo {
   public min: Vector2
@@ -84,7 +82,7 @@ export class AnimatedSprite extends Sprite implements IMessageHandler {
     this._frameTime = info.frameTime
 
     Message.subscribe(
-      MESSAGE_ASSET_LOADER_ASSET_LOADED + this._material.diffuseTextureName,
+      MESSAGE_ASSET_LOADER_ASSET_LOADED + this._material?.diffuseTextureName,
       this,
     )
   }
@@ -141,7 +139,7 @@ export class AnimatedSprite extends Sprite implements IMessageHandler {
   public onMessage(message: Message): void {
     if (
       message.code ===
-      MESSAGE_ASSET_LOADER_ASSET_LOADED + this._material.diffuseTextureName
+      MESSAGE_ASSET_LOADER_ASSET_LOADED + this._material?.diffuseTextureName
     ) {
       this._assetLoaded = true
       const asset = message.context as ImageAsset
@@ -240,6 +238,9 @@ export class AnimatedSprite extends Sprite implements IMessageHandler {
 
   private setupFromMaterial(): void {
     if (!this._assetLoaded) {
+      if (!this._materialName) {
+        return
+      }
       const material = MaterialManager.getMaterial(this._materialName)
       if (!material) {
         return

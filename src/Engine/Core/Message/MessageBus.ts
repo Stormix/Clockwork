@@ -1,5 +1,5 @@
-﻿import { IMessageHandler } from './IMessageHandler'
-import { Message, MessagePriority } from './Message'
+﻿import { IMessageHandler } from './'
+import { Message, MessagePriority } from './'
 import {
   MessageSubscriptionNode,
   MessageQueueNode,
@@ -27,22 +27,22 @@ export class MessageBus {
     handler: IMessageHandler | null,
     callback: MessageCallback | null,
   ): void {
-    if (MessageBus._subscriptions[code] === undefined) {
+    if (!MessageBus?._subscriptions[code]) {
       MessageBus._subscriptions[code] = []
     }
 
     let matches: MessageSubscriptionNode[] = []
-    if (handler !== undefined) {
+    if (handler) {
       matches = MessageBus._subscriptions[code].filter(
         (x) => x.handler === handler,
       )
-    } else if (callback !== undefined) {
+    } else if (callback) {
       matches = MessageBus._subscriptions[code].filter(
         (x) => x.callback === callback,
       )
     } else {
       console.warn(
-        'Cannot add subscription where both the handler and callback are undefined.',
+        'Cannot add subscription where both the handler and callback are null.',
       )
       return
     }
@@ -69,7 +69,7 @@ export class MessageBus {
     handler: IMessageHandler | null,
     callback: MessageCallback | null,
   ): void {
-    if (MessageBus._subscriptions[code] === undefined) {
+    if (!MessageBus?._subscriptions[code]) {
       console.warn(
         'Cannot unsubscribe handler from code: ' +
           code +
@@ -79,17 +79,17 @@ export class MessageBus {
     }
 
     let matches: MessageSubscriptionNode[] = []
-    if (handler !== undefined) {
+    if (handler) {
       matches = MessageBus._subscriptions[code].filter(
         (x) => x.handler === handler,
       )
-    } else if (callback !== undefined) {
+    } else if (callback) {
       matches = MessageBus._subscriptions[code].filter(
         (x) => x.callback === callback,
       )
     } else {
       console.warn(
-        'Cannot remove subscription where both the handler and callback are undefined.',
+        'Cannot remove subscription where both the handler and callback are null.',
       )
       return
     }
@@ -108,16 +108,16 @@ export class MessageBus {
   public static post(message: Message): void {
     console.log('Message posted:', message)
     const handlers = MessageBus._subscriptions[message.code]
-    if (handlers === undefined) {
+    if (!handlers) {
       return
     }
 
     for (const h of handlers) {
       if (message.priority === MessagePriority.HIGH) {
-        if (h.handler !== undefined) {
+        if (h.handler) {
           h.handler?.onMessage(message)
         } else {
-          if (h.callback !== undefined) {
+          if (h.callback) {
             h.callback?.(message)
           } else {
             // NOTE: Technically shouldn't be possible, but...
@@ -150,9 +150,9 @@ export class MessageBus {
     )
     for (let i = 0; i < messageLimit; ++i) {
       const node = MessageBus._normalMessageQueue.pop()
-      if (node?.handler !== undefined) {
+      if (node?.handler) {
         node.handler?.onMessage(node.message)
-      } else if (node?.callback !== undefined) {
+      } else if (node?.callback) {
         node.callback?.(node.message)
       } else {
         console.warn(

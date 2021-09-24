@@ -1,6 +1,6 @@
-﻿import { TEntity } from '../World/TEntity'
-import { IBehavior } from './IBehavior'
-import { IBehaviorData } from './IBehaviorData'
+﻿import { TEntity } from '../World/'
+import { IBehavior } from './'
+import { IBehaviorData } from './'
 
 /**
  * The base behavior type from which all behaviors should inherit.

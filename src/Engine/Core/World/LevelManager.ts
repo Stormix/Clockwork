@@ -1,10 +1,7 @@
-﻿import {
-  AssetManager,
-  MESSAGE_ASSET_LOADER_ASSET_LOADED,
-} from '../Assets/AssetManager'
-import { JsonAsset } from '../Assets/JsonAssetLoader'
-import { Message } from '../Message/Message'
-import { Level } from './Level'
+﻿import { AssetManager, MESSAGE_ASSET_LOADER_ASSET_LOADED } from '../Assets/'
+import { JsonAsset } from '../Assets/'
+import { Message } from '../Message/'
+import { Level } from './'
 
 /**
  * Manages levels in the engine. Levels (for now) are registered with this manager
@@ -33,8 +30,8 @@ export class LevelManager {
   public static load(): void {
     // Get the asset(s). TODO: This probably should come from a central asset manifest.
     const asset = AssetManager.getAsset('assets/levels/levels.json')
-    if (asset !== undefined) {
-      LevelManager.processLevelConfigAsset(asset as JsonAsset)
+    if (asset) {
+      LevelManager.processLevelConfigAsset(asset)
     } else {
       // Listen for the asset load.
       Message.subscribeCallback(
@@ -49,14 +46,15 @@ export class LevelManager {
    * @param name The name of the level to change to.
    */
   public static changeLevel(name: string): void {
-    if (LevelManager._activeLevel !== undefined) {
+    console.log('Changing level to:' + name)
+    if (LevelManager._activeLevel) {
       LevelManager._activeLevel?.onDeactivated()
       LevelManager._activeLevel?.unload()
       LevelManager._activeLevel = null
     }
 
     // Make sure the level is registered.
-    if (LevelManager._registeredLevels[name] !== undefined) {
+    if (LevelManager._registeredLevels[name]) {
       // If the level asset is already loaded, get it and use it to load the level.
       // Otherwise, retrieve the asset and load the level upon completion.
       if (AssetManager.isAssetLoaded(LevelManager._registeredLevels[name])) {
@@ -105,11 +103,10 @@ export class LevelManager {
   }
 
   private static loadLevel(asset: JsonAsset): void {
-    console.log('Loading level:' + asset.Name)
     const data = asset.Data
 
     let levelName: string
-    if (data.name === undefined) {
+    if (!data?.name) {
       throw new Error('Zone file format exception: Zone name not present.')
     } else {
       levelName = String(data.name)
@@ -125,11 +122,11 @@ export class LevelManager {
     Message.send('LEVEL_LOADED', this)
   }
 
-  private static processLevelConfigAsset(asset: JsonAsset): void {
-    const levels = asset.Data.levels
+  private static processLevelConfigAsset(asset: JsonAsset | null): void {
+    const levels = asset?.Data.levels
     if (levels) {
       for (const level of levels) {
-        if (level.name !== undefined && level.file !== undefined) {
+        if (level.name && level.file) {
           LevelManager._registeredLevels[level.name] = String(level.file)
         } else {
           throw new Error(

@@ -1,6 +1,6 @@
-﻿import { Vector2 } from '../../Math/Vector2'
-import { IShape2D } from './IShape2D'
-import { Rectangle2D } from './Rectangle2d'
+﻿import { Vector2 } from '../../Math/'
+import { IShape2D } from './'
+import { Rectangle2D } from './'
 
 /** Represents a 2D circle. */
 export class Circle2D implements IShape2D {
@@ -26,15 +26,15 @@ export class Circle2D implements IShape2D {
    * @param json The json to set from.
    */
   public setFromJson(json: any): void {
-    if (json.position !== undefined) {
+    if (json.position) {
       this.position.setFromJson(json.position)
     }
 
-    if (json.origin !== undefined) {
+    if (json.origin) {
       this.origin.setFromJson(json.origin)
     }
 
-    if (json.radius === undefined) {
+    if (!json?.radius) {
       throw new Error('Rectangle2D requires radius to be present.')
     }
     this.radius = Number(json.radius)

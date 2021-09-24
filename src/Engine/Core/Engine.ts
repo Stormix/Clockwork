@@ -1,19 +1,16 @@
 ﻿import { IGame } from '../Game/IGame'
-import { AssetManager } from './Assets/AssetManager'
-import { AudioManager } from './Audio/AudioManager'
-import { gl } from './GL/GLUtilities'
-import { BitmapFontManager } from './Graphics/BitmapFontManager'
-import { MaterialManager } from './Graphics/MaterialManager'
-import { ShaderManager } from './Graphics/ShaderManager'
-import { InputManager } from './Input/InputManager'
-import { degToRad } from './Math/MathExtensions'
-import { MessageBus } from './Message/MessageBus'
-import { Renderer } from './Renderer/Renderer'
-import {
-  RendererViewportCreateInfo,
-  ViewportProjectionType,
-} from './Renderer/RendererViewport'
-import { LevelManager } from './World/LevelManager'
+import { AssetManager } from './Assets/'
+import { AudioManager } from './Audio/'
+import { gl } from './GL/'
+import { BitmapFontManager } from './Graphics/'
+import { MaterialManager } from './Graphics/'
+import { ShaderManager } from './Graphics/'
+import { InputManager } from './Input/'
+import { degToRad } from './Math/'
+import { MessageBus } from './Message/'
+import { Renderer } from './Renderer/'
+import { RendererViewportCreateInfo, ViewportProjectionType } from './Renderer/'
+import { LevelManager } from './World/'
 
 /**
  * The main game engine class.
@@ -72,10 +69,7 @@ export class Engine {
 
     // Attempt to load additional information.
     const debugRendererExtension = gl.getExtension('WEBGL_debug_renderer_info')
-    if (
-      debugRendererExtension !== undefined &&
-      debugRendererExtension !== null
-    ) {
+    if (debugRendererExtension) {
       console.debug(
         `UNMASKED_VENDOR_WEBGL:    ${gl.getParameter(
           debugRendererExtension.UNMASKED_VENDOR_WEBGL,

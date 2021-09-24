@@ -1,11 +1,11 @@
-﻿import { BehaviorManager } from '../Behaviors/BehaviorManager'
-import { ComponentManager } from '../Components/ComponentManager'
-import { RenderView } from '../Renderer/RenderView'
+﻿import { BehaviorManager } from '../Behaviors/'
+import { ComponentManager } from '../Components/'
+import { RenderView } from '../Renderer/'
 import { Dictionary } from '../Types'
-import { BaseCamera } from './Cameras/BaseCamera'
-import { PerspectiveCamera } from './Cameras/PerspectiveCamera'
-import { SceneGraph } from './SceneGraph'
-import { TEntity } from './TEntity'
+import { BaseCamera } from './Cameras/'
+import { PerspectiveCamera } from './Cameras/'
+import { SceneGraph } from './'
+import { TEntity } from './'
 
 /**
  * Represents the basic level state.
@@ -77,11 +77,11 @@ export class Level {
    * @param jsonData The JSON-formatted data to initialize this level with.
    */
   public initialize(jsonData: any): void {
-    if (jsonData.objects === undefined) {
+    if (!jsonData?.objects) {
       throw new Error('Zone initialization error: objects not present.')
     }
 
-    if (jsonData.defaultCamera !== undefined) {
+    if (jsonData.defaultCamera) {
       this._defaultCameraName = String(jsonData.defaultCamera)
     }
 
@@ -102,9 +102,9 @@ export class Level {
     // Get registered cameras. If there aren't any, register one automatically.
     // Otherwise, look for the first one and make it active.
     // TODO: Add active camera to level config, assign by name.
-    if (this._defaultCameraName !== undefined) {
+    if (this._defaultCameraName) {
       const obj = this._sceneGraph.getEntityByName(this._defaultCameraName)
-      if (obj === undefined) {
+      if (!obj) {
         throw new Error('Default camera not found:' + this._defaultCameraName)
       } else {
         // NOTE: If detected, the camera should already be registered at this point.
@@ -161,9 +161,9 @@ export class Level {
    * @param camera The camera to register.
    */
   public registerCamera(camera: BaseCamera): void {
-    if (this._registeredCameras[camera.name] === undefined) {
+    if (!this._registeredCameras?.[camera.name]) {
       this._registeredCameras[camera.name] = camera
-      if (this._activeCamera === undefined) {
+      if (!this._activeCamera) {
         this._activeCamera = camera
       }
     } else {
@@ -180,7 +180,7 @@ export class Level {
    * @param camera The camera to unregister.
    */
   public unregisterCamera(camera: BaseCamera): void {
-    if (this._registeredCameras[camera.name] !== undefined) {
+    if (this._registeredCameras[camera.name]) {
       this._registeredCameras[camera.name] = null
       if (this._activeCamera === camera) {
         // NOTE: auto-activate the next camera in line?
@@ -206,7 +206,7 @@ export class Level {
     let entity: TEntity
 
     // TODO: Use factories
-    if (dataSection.type !== undefined) {
+    if (dataSection.type) {
       if ((dataSection.type = 'perspectiveCamera')) {
         entity = new PerspectiveCamera(name, this._sceneGraph)
         this.registerCamera(entity as BaseCamera)
@@ -217,11 +217,11 @@ export class Level {
       entity = new TEntity(name, this._sceneGraph)
     }
 
-    if (dataSection.transform !== undefined) {
+    if (dataSection.transform) {
       entity.transform.setFromJson(dataSection.transform)
     }
 
-    if (dataSection.components !== undefined) {
+    if (dataSection.components) {
       for (const c in dataSection.components) {
         const data = dataSection.components[c]
         const component = ComponentManager.extractComponent(data)
@@ -229,7 +229,7 @@ export class Level {
       }
     }
 
-    if (dataSection.behaviors !== undefined) {
+    if (dataSection.behaviors) {
       for (const b in dataSection.behaviors) {
         const data = dataSection.behaviors[b]
         const behavior = BehaviorManager.extractBehavior(data)
@@ -237,14 +237,14 @@ export class Level {
       }
     }
 
-    if (dataSection.children !== undefined) {
+    if (dataSection.children) {
       for (const o in dataSection.children) {
         const obj = dataSection.children[o]
         this.loadEntity(obj, entity)
       }
     }
 
-    if (parent !== undefined) {
+    if (parent) {
       parent.addChild(entity)
     }
   }

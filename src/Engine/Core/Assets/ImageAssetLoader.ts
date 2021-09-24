@@ -1,7 +1,7 @@
-﻿import { AssetManager } from './AssetManager'
-import { IAsset } from './IAsset'
-import { IAssetLoader } from './IAssetLoader'
-import { TargaProcessor } from './TargaProcessor'
+﻿import { AssetManager } from './'
+import { IAsset } from './'
+import { IAssetLoader } from './'
+import { TargaProcessor } from './'
 
 /** Represents an image asset */
 export class ImageAsset implements IAsset {

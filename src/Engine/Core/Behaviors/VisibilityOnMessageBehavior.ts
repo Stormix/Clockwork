@@ -1,10 +1,10 @@
-﻿import { IMessageHandler } from '../Message/IMessageHandler'
-import { Message } from '../Message/Message'
-import { BaseBehavior } from './BaseBehavior'
-import { BehaviorManager } from './BehaviorManager'
-import { IBehavior } from './IBehavior'
-import { IBehaviorBuilder } from './IBehaviorBuilder'
-import { IBehaviorData } from './IBehaviorData'
+﻿import { IMessageHandler } from '../Message/'
+import { Message } from '../Message/'
+import { BaseBehavior } from './'
+import { BehaviorManager } from './'
+import { IBehavior } from './'
+import { IBehaviorBuilder } from './'
+import { IBehaviorData } from './'
 
 export class VisibilityOnMessageBehaviorData implements IBehaviorData {
   public name: string
@@ -12,7 +12,7 @@ export class VisibilityOnMessageBehaviorData implements IBehaviorData {
   public visible: boolean
 
   public setFromJson(json: any): void {
-    if (json.messageCode === undefined) {
+    if (!json?.messageCode) {
       throw new Error(
         "VisibilityOnMessageBehaviorData requires 'messageCode' to be defined.",
       )
@@ -20,7 +20,7 @@ export class VisibilityOnMessageBehaviorData implements IBehaviorData {
       this.messageCode = String(json.messageCode)
     }
 
-    if (json.visible === undefined) {
+    if (!json?.visible) {
       throw new Error(
         "VisibilityOnMessageBehaviorData requires 'visible' to be defined.",
       )

@@ -1,6 +1,6 @@
-﻿import { AssetManager } from './AssetManager'
-import { IAsset } from './IAsset'
-import { IAssetLoader } from './IAssetLoader'
+﻿import { AssetManager } from './'
+import { IAsset } from './'
+import { IAssetLoader } from './'
 
 /** Represents an Json asset */
 export class JsonAsset implements IAsset {
@@ -43,9 +43,11 @@ export class JsonAssetLoader implements IAssetLoader {
   }
 
   private onJsonLoaded(assetName: string, request: XMLHttpRequest): void {
-    console.log('onJsonLoaded: assetName/request', assetName, request)
-
     if (request.readyState === request.DONE) {
+      if (!request.responseText) {
+        console.warn('Failed to load asset: ' + assetName)
+        return
+      }
       const json = JSON.parse(request.responseText)
       const asset = new JsonAsset(assetName, json)
       AssetManager.onAssetLoaded(asset)

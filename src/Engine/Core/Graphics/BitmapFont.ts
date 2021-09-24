@@ -1,11 +1,8 @@
-﻿import {
-  AssetManager,
-  MESSAGE_ASSET_LOADER_ASSET_LOADED,
-} from '../Assets/AssetManager'
-import { TextAsset } from '../Assets/TestAssetLoader'
-import { Vector2 } from '../Math/Vector2'
-import { IMessageHandler } from '../Message/IMessageHandler'
-import { Message } from '../Message/Message'
+﻿import { AssetManager, MESSAGE_ASSET_LOADER_ASSET_LOADED } from '../Assets/'
+import { TextAsset } from '../Assets/'
+import { Vector2 } from '../Math/'
+import { IMessageHandler } from '../Message/'
+import { Message } from '../Message/'
 
 class FontUtilities {
   public static extractFieldValue(field: string): string {
@@ -125,7 +122,7 @@ export class BitmapFont implements IMessageHandler {
   /** Loads this font. */
   public load(): void {
     const asset = AssetManager.getAsset(this._fontFileName)
-    if (asset !== undefined) {
+    if (asset) {
       this.processFontFile(asset.Data)
     } else {
       Message.subscribe(
@@ -154,7 +151,7 @@ export class BitmapFont implements IMessageHandler {
   public getGlyph(char: string): FontGlyph {
     // Replace unrecognized characters with a '?'.
     let code = char.charCodeAt(0)
-    code = this._glyphs[code] === undefined ? 63 : code
+    code = !this._glyphs?.[code] ? 63 : code
     return this._glyphs[code]
   }
 
@@ -207,7 +204,7 @@ export class BitmapFont implements IMessageHandler {
           break
         case 'page':
           {
-            const id = Number(FontUtilities.extractFieldValue(fields[1]))
+            // const id = Number(FontUtilities.extractFieldValue(fields[1]))
 
             this._imageFile = FontUtilities.extractFieldValue(fields[2])
 

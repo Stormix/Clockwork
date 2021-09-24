@@ -1,10 +1,7 @@
-﻿import {
-  MESSAGE_ASSET_LOADER_ASSET_LOADED,
-  AssetManager,
-} from '../Assets/AssetManager'
-import { JsonAsset } from '../Assets/JsonAssetLoader'
-import { Message } from '../Message/Message'
-import { BitmapFont } from './BitmapFont'
+﻿import { MESSAGE_ASSET_LOADER_ASSET_LOADED, AssetManager } from '../Assets/'
+import { JsonAsset } from '../Assets/'
+import { Message } from '../Message/'
+import { BitmapFont } from './'
 
 /** Represents the configuration for a bitmap font. These are typically created and stored in a fonts file. */
 class BitmapFontConfig {
@@ -20,11 +17,11 @@ class BitmapFontConfig {
    */
   public static fromJson(json: any): BitmapFontConfig {
     const config = new BitmapFontConfig()
-    if (json.name !== undefined) {
+    if (json.name) {
       config.name = String(json.name)
     }
 
-    if (json.fontFile !== undefined) {
+    if (json.fontFile) {
       config.fontFile = String(json.fontFile)
     } else {
       throw new Error('Cannot create a bitmap font without a font file.')
@@ -85,7 +82,7 @@ export class BitmapFontManager {
    * @param name The name of the font.
    */
   public static getFont(name: string): BitmapFont {
-    if (BitmapFontManager._fonts[name] === undefined) {
+    if (!BitmapFontManager._fonts?.[name]) {
       throw new Error('A font named ' + name + ' does not exist.')
     }
 
@@ -98,7 +95,7 @@ export class BitmapFontManager {
   public static load(): void {
     // Get the asset(s). TODO: This probably should come from a central asset manifest.
     const asset = AssetManager.getAsset('assets/fonts/fonts.json')
-    if (asset !== undefined) {
+    if (asset) {
       BitmapFontManager.processFontAsset(asset as JsonAsset)
     } else {
       // Listen for the asset load.
@@ -110,7 +107,7 @@ export class BitmapFontManager {
   }
 
   private static processFontAsset(asset: JsonAsset): void {
-    const fonts = asset.Data.bitmapFonts
+    const fonts = asset?.Data?.bitmapFonts
     if (fonts) {
       for (const font of fonts) {
         const f = BitmapFontConfig.fromJson(font)

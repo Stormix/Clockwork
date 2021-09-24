@@ -1,5 +1,5 @@
-﻿import { IBehavior } from './IBehavior'
-import { IBehaviorBuilder } from './IBehaviorBuilder'
+﻿import { IBehavior } from './'
+import { IBehaviorBuilder } from './'
 
 /**
  * Manages behaviors in the system.
@@ -20,10 +20,8 @@ export class BehaviorManager {
    * @param json The json to extract a behavior from.
    */
   public static extractBehavior(json: any): IBehavior | null {
-    if (json.type !== undefined) {
-      if (
-        BehaviorManager._registeredBuilders[String(json.type)] !== undefined
-      ) {
+    if (json.type) {
+      if (BehaviorManager._registeredBuilders[String(json.type)]) {
         return BehaviorManager._registeredBuilders[
           String(json.type)
         ].buildFromJson(json)

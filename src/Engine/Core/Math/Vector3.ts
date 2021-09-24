@@ -1,4 +1,4 @@
-﻿import { Vector2 } from './Vector2'
+﻿import { Vector2 } from './'
 
 /** Represents a 3-component vector. */
 export class Vector3 {
@@ -75,15 +75,15 @@ export class Vector3 {
    * @param z The z component value.
    */
   public set(x?: number, y?: number, z?: number): void {
-    if (x !== undefined) {
+    if (x ) {
       this._x = x
     }
 
-    if (y !== undefined) {
+    if (y ) {
       this._y = y
     }
 
-    if (z !== undefined) {
+    if (z ) {
       this._z = z
     }
   }
@@ -126,15 +126,15 @@ export class Vector3 {
    * @param json The JSON to set from.
    */
   public setFromJson(json: any): void {
-    if (json.x !== undefined) {
+    if (json.x ) {
       this._x = Number(json.x)
     }
 
-    if (json.y !== undefined) {
+    if (json.y ) {
       this._y = Number(json.y)
     }
 
-    if (json.z !== undefined) {
+    if (json.z ) {
       this._z = Number(json.z)
     }
   }

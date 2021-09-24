@@ -1,5 +1,5 @@
-﻿import { RenderView } from '../Renderer/RenderView'
-import { TEntity } from '../World/TEntity'
+﻿import { RenderView } from '../Renderer/'
+import { TEntity } from '../World/'
 
 /**
  * Components are renderable objects which are attached to TEntities in the world.

@@ -1,5 +1,5 @@
-import { Material } from '../Graphics/Material'
-import { Matrix4x4 } from '../Math/Matrix4x4'
+import { Material } from '../Graphics/'
+import { Matrix4x4 } from '../Math/'
 
 export class RenderView {
   public viewMatrix: Matrix4x4

@@ -1,4 +1,4 @@
-﻿import { IComponent } from './IComponent'
+﻿import { IComponent } from './'
 
 /** A builder which is used for component creation. */
 export interface IComponentBuilder {

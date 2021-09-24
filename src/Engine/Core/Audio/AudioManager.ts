@@ -1,10 +1,7 @@
-﻿import {
-  MESSAGE_ASSET_LOADER_ASSET_LOADED,
-  AssetManager,
-} from '../Assets/AssetManager'
-import { JsonAsset } from '../Assets/JsonAssetLoader'
-import { Message } from '../Message/Message'
-import { SoundEffect } from './SoundEffect'
+﻿import { MESSAGE_ASSET_LOADER_ASSET_LOADED, AssetManager } from '../Assets/'
+import { JsonAsset } from '../Assets/'
+import { Message } from '../Message/'
+import { SoundEffect } from './'
 
 /** Represents the configuration for a audio file. These are typically created and stored in a audio config file. */
 class AudioConfig {
@@ -23,15 +20,15 @@ class AudioConfig {
    */
   public static fromJson(json: any): AudioConfig {
     const config = new AudioConfig()
-    if (json.name !== undefined) {
+    if (json.name) {
       config.name = String(json.name)
     }
 
-    if (json.loop !== undefined) {
+    if (json.loop) {
       config.loop = Boolean(json.loop)
     }
 
-    if (json.audioFile !== undefined) {
+    if (json.audioFile) {
       config.audioFile = String(json.audioFile)
     } else {
       throw new Error('Cannot create a audio config without a audioFile.')
@@ -73,8 +70,8 @@ export class AudioManager {
   public static load(): void {
     // Get the asset(s). TODO: This probably should come from a central asset manifest.
     const asset = AssetManager.getAsset('assets/audio/audio.json')
-    if (asset !== undefined) {
-      AudioManager.processAudioConfigAsset(asset as JsonAsset)
+    if (asset) {
+      AudioManager.processAudioConfigAsset(asset)
     } else {
       // Listen for the message that the file has loaded.
       Message.subscribeCallback(
@@ -103,9 +100,8 @@ export class AudioManager {
    * @param name The name of the sound to be played.
    */
   public static playSound(name: string): void {
-    if (AudioManager._soundEffects[name] !== undefined) {
-      AudioManager._soundEffects[name].play()
-    }
+    const sound = AudioManager._soundEffects[name]
+    if (sound) sound.play()
   }
 
   /**
@@ -113,9 +109,8 @@ export class AudioManager {
    * @param name The name of the sound to be paused.
    */
   public static pauseSound(name: string): void {
-    if (AudioManager._soundEffects[name] !== undefined) {
-      AudioManager._soundEffects[name].pause()
-    }
+    const sound = AudioManager._soundEffects[name]
+    if (sound) sound.pause()
   }
 
   /**
@@ -132,9 +127,8 @@ export class AudioManager {
    * @param name The name of the sound to be stopped.
    */
   public static stopSound(name: string): void {
-    if (AudioManager._soundEffects[name] !== undefined) {
-      AudioManager._soundEffects[name].stop()
-    }
+    const sound = AudioManager._soundEffects[name]
+    if (sound) sound.stop()
   }
 
   /**
@@ -146,8 +140,8 @@ export class AudioManager {
     }
   }
 
-  private static processAudioConfigAsset(asset: JsonAsset): void {
-    const configs = asset.Data.soundEffects
+  private static processAudioConfigAsset(asset: JsonAsset | null): void {
+    const configs = asset?.Data.soundEffects
     if (configs) {
       for (const config of configs) {
         const a = AudioConfig.fromJson(config)

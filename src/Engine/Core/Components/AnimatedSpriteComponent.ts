@@ -1,12 +1,12 @@
-﻿import { AnimatedSprite, AnimatedSpriteInfo } from '../Graphics/AnimatedSprite'
-import { Vector3 } from '../Math/Vector3'
-import { RenderView } from '../Renderer/RenderView'
-import { BaseComponent } from './BaseComponent'
-import { ComponentManager } from './ComponentManager'
-import { IComponent } from './IComponent'
-import { IComponentBuilder } from './IComponentBuilder'
-import { IComponentData } from './IComponentData'
-import { SpriteComponentData } from './SpriteComponent'
+﻿import { IComponentBuilder } from './'
+import { IComponentData } from './'
+import { SpriteComponentData } from './'
+import { AnimatedSprite, AnimatedSpriteInfo } from '../Graphics/'
+import { Vector3 } from '../Math/'
+import { RenderView } from '../Renderer/'
+import { BaseComponent } from './'
+import { ComponentManager } from './'
+import { IComponent } from './'
 
 /**
  * The data for an animated sprite component. Inherited from sprite component data.
@@ -36,11 +36,11 @@ export class AnimatedSpriteComponentData
   public setFromJson(json: any): void {
     super.setFromJson(json)
 
-    if (json.autoPlay !== undefined) {
+    if (json.autoPlay) {
       this.autoPlay = Boolean(json.autoPlay)
     }
 
-    if (json.frameWidth === undefined) {
+    if (!json?.frameWidth) {
       throw new Error(
         "AnimatedSpriteComponentData requires 'frameWidth' to be defined.",
       )
@@ -48,7 +48,7 @@ export class AnimatedSpriteComponentData
       this.frameWidth = Number(json.frameWidth)
     }
 
-    if (json.frameHeight === undefined) {
+    if (!json?.frameHeight) {
       throw new Error(
         "AnimatedSpriteComponentData requires 'frameHeight' to be defined.",
       )
@@ -56,7 +56,7 @@ export class AnimatedSpriteComponentData
       this.frameHeight = Number(json.frameHeight)
     }
 
-    if (json.frameCount === undefined) {
+    if (!json?.frameCount) {
       throw new Error(
         "AnimatedSpriteComponentData requires 'frameCount' to be defined.",
       )
@@ -64,7 +64,7 @@ export class AnimatedSpriteComponentData
       this.frameCount = Number(json.frameCount)
     }
 
-    if (json.frameSequence === undefined) {
+    if (!json?.frameSequence) {
       throw new Error(
         "AnimatedSpriteComponentData requires 'frameSequence' to be defined.",
       )
@@ -72,7 +72,7 @@ export class AnimatedSpriteComponentData
       this.frameSequence = json.frameSequence
     }
 
-    if (json.frameTime !== undefined) {
+    if (json.frameTime) {
       this.frameTime = Number(json.frameTime)
     }
   }

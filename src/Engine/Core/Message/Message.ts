@@ -1,6 +1,6 @@
-﻿import { IMessageHandler } from './IMessageHandler'
-import { MessageBus } from './MessageBus'
-import { MessageCallback } from './MessageSubscriptionNode'
+﻿import { IMessageHandler } from './'
+import { MessageBus } from './'
+import { MessageCallback } from './'
 
 /** Represents message priorities. */
 export enum MessagePriority {
