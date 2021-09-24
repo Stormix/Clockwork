@@ -36,7 +36,7 @@ export class AnimatedSpriteComponentData
   public setFromJson(json: any): void {
     super.setFromJson(json)
 
-    if (json.autoPlay) {
+    if (json?.autoPlay !== undefined || json.autoPlay !== null) {
       this.autoPlay = Boolean(json.autoPlay)
     }
 

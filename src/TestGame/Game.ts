@@ -1,3 +1,5 @@
+import './behaviors'
+
 import { RenderView } from '../Engine/Core/Renderer/RenderView'
 import { LevelManager } from '../Engine/Core/World/LevelManager'
 import { IGame } from '../Engine/Game/IGame'

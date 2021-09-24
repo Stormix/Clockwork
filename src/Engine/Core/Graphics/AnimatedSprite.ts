@@ -221,8 +221,6 @@ export class AnimatedSprite extends Sprite implements IMessageHandler {
         totalWidth = 0
       }
 
-      console.log('w/h', this._assetWidth, this._assetHeight)
-
       const u = (i * this._frameWidth) / this._assetWidth
       const v = (yValue * this._frameHeight) / this._assetHeight
       const min: Vector2 = new Vector2(u, v)

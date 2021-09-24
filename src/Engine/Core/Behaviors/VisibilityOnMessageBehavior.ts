@@ -19,8 +19,7 @@ export class VisibilityOnMessageBehaviorData implements IBehaviorData {
     } else {
       this.messageCode = String(json.messageCode)
     }
-
-    if (!json?.visible) {
+    if (json?.visible === undefined || json.visible === null) {
       throw new Error(
         "VisibilityOnMessageBehaviorData requires 'visible' to be defined.",
       )

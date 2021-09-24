@@ -24,7 +24,7 @@ class AudioConfig {
       config.name = String(json.name)
     }
 
-    if (json.loop) {
+    if (json?.loop !== undefined || json.loop !== null) {
       config.loop = Boolean(json.loop)
     }
 

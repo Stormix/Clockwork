@@ -28,7 +28,8 @@ export class BehaviorManager {
       }
 
       throw new Error(
-        'Behavior manager error - type is missing or builder is not registered for this type.',
+        'Behavior manager error - type is missing or builder is not registered for this type: ' +
+          json?.type,
       )
     }
 

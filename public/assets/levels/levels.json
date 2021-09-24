@@ -1,9 +1,14 @@
 {
-    "levels": [
-        {
-            "name": "test 1",
-            "description": "A test level.",
-            "file": "assets/levels/test1.json"
-        }
-    ]
+  "levels": [
+    {
+      "name": "test 1",
+      "description": "A test level.",
+      "file": "assets/levels/test1.json"
+    },
+    {
+      "name": "duck",
+      "description": "A test level.",
+      "file": "assets/levels/duck.json"
+    }
+  ]
 }

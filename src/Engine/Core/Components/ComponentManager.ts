@@ -20,17 +20,16 @@ export class ComponentManager {
    * @param json The json to extract from.
    */
   public static extractComponent(json: any): IComponent | null {
-    if (json.type ) {
-      if (
-        ComponentManager._registeredBuilders[String(json.type)]
-      ) {
+    if (json.type) {
+      if (ComponentManager._registeredBuilders[String(json.type)]) {
         return ComponentManager._registeredBuilders[
           String(json.type)
         ].buildFromJson(json)
       }
 
       throw new Error(
-        'Component manager error - type is missing or builder is not registered for this type.',
+        'Component manager error - type is missing or builder is not registered for this type:' +
+          json.type,
       )
     }
     return null
