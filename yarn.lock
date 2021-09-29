@@ -1094,6 +1094,18 @@ text-table@^0.2.0:
   resolved "https://registry.yarnpkg.com/text-table/-/text-table-0.2.0.tgz#7f5ee823ae805207c00af2df4a84ec3fcfa570b4"
   integrity sha1-f17oI66AUgfACvLfSoTsP8+lcLQ=
 
+three.js@^0.77.1:
+  version "0.77.1"
+  resolved "https://registry.yarnpkg.com/three.js/-/three.js-0.77.1.tgz#07858a8749e4b627a31083252a2d987776cca32a"
+  integrity sha1-B4WKh0nktiejEIMlKi2Yd3bMoyo=
+  dependencies:
+    three "0.77.0"
+
+three@0.77.0:
+  version "0.77.0"
+  resolved "https://registry.yarnpkg.com/three/-/three-0.77.0.tgz#8b0b1b00047689ceaa020d480a562ca60d87ff37"
+  integrity sha1-iwsbAAR2ic6qAg1IClYspg2H/zc=
+
 to-regex-range@^5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/to-regex-range/-/to-regex-range-5.0.1.tgz#1648c44aae7c8d988a326018ed72f5b4dd0392e4"

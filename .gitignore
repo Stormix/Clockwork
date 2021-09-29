@@ -6,3 +6,4 @@ dist-ssr
 *.log
 .cache
 .parcel-cache
+__old__
