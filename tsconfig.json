@@ -13,7 +13,8 @@
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "strictPropertyInitialization": false,
-    "noImplicitReturns": true
+    "noImplicitReturns": true,
+    "typeRoots":[ "./types"],
   },
-  "include": ["./src"]
+  "include": ["./src"],
 }

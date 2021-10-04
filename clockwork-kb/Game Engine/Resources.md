@@ -5,8 +5,13 @@
 
  ## Design patterns
  - http://www.gameprogrammingpatterns.com/ 
+ - ECS: https://www.richardlord.net/blog/ecs/what-is-an-entity-framework.html
+ - Observer: https://gameprogrammingpatterns.com/observer.html 
+ 
 ## Shaders
 - https://thebookofshaders.com/
 
 ## WebGL
 - http://uniguld.dk/wp-content/guld/DTU/webgrafik/0321902920_WebGL.pdf
+
+# Architecture

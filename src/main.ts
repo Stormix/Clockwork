@@ -1,13 +1,12 @@
-import { Engine } from './Engine/Core/Engine'
-import { Game } from './TestGame/Game'
+import { Engine } from './Engine/Engine'
+import { Game } from './Game/Game'
 import './style.scss'
 
-const engine = new Engine(320, 480)
+const canvas = document.getElementById('viewport') as HTMLCanvasElement
+const gameArea = document.getElementById('gameArea') as HTMLElement
+
+const engine = new Engine(canvas, gameArea)
 
 window.onload = () => {
-  engine.start(new Game(), 'viewport')
-}
-
-window.onresize = () => {
-  engine.resize()
+  engine.start(1280, 720, new Game(engine))
 }

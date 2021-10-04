@@ -1,4 +1,5 @@
 {
   "spellcheck": true,
-  "showLineNumber": false
+  "showLineNumber": false,
+  "promptDelete": false
 }
