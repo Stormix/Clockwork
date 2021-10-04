@@ -445,6 +445,13 @@ array-union@^2.1.0:
   resolved "https://registry.yarnpkg.com/array-union/-/array-union-2.1.0.tgz#b798420adbeb1de828d84acd8a2e23d3efe85e8d"
   integrity sha512-HGyxoOTYUyCM6stUe6EJgnd4EoewAI7zMdfqO+kGjnlZmBDz/cR5pf8r/cR4Wq60sL/p0IkcjUEEPwS3GFrIyw==
 
+astar-typescript@^1.2.5:
+  version "1.2.5"
+  resolved "https://registry.yarnpkg.com/astar-typescript/-/astar-typescript-1.2.5.tgz#93946c8bad155e6a5f69ce3bfbde9abbf6fd6732"
+  integrity sha512-1ESY+q//Ous6QtW68woigdt5e0hI1DJJ4WtST1r14BuchUBUKKYlq6qLQCy1S8/IWMDnqNp/h79YUVXIlNPwkw==
+  dependencies:
+    lodash "4.17.20"
+
 astral-regex@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/astral-regex/-/astral-regex-2.0.0.tgz#483143c567aeed4785759c0865786dc77d7d2e31"
@@ -1057,6 +1064,11 @@ lodash.truncate@^4.4.2:
   resolved "https://registry.yarnpkg.com/lodash.truncate/-/lodash.truncate-4.4.2.tgz#5a350da0b1113b837ecfffd5812cbe58d6eae193"
   integrity sha1-WjUNoLERO4N+z//VgSy+WNbq4ZM=
 
+lodash@4.17.20:
+  version "4.17.20"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.20.tgz#b44a9b6297bcb698f1c51a3545a2b3b368d59c52"
+  integrity sha512-PlhdFcillOINfeV7Ni6oF1TAEayyZBoZ8bcshTHqOYJYlrqzRK5hagpagky5o4HfCzzd1TRkXPMFq6cKk9rGmA==
+
 lru-cache@^6.0.0:
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-6.0.0.tgz#6d6fe6570ebd96aaf90fcad1dafa3b2566db3a94"
@@ -1256,6 +1268,11 @@ queue-microtask@^1.2.2:
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/queue-microtask/-/queue-microtask-1.2.3.tgz#4929228bbc724dfac43e0efb058caf7b6cfb6243"
   integrity sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==
+
+rand-seed@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/rand-seed/-/rand-seed-1.0.1.tgz#f48c134890e0bc3725c5b6c99bc8a53fba8e0e9b"
+  integrity sha512-g7uUh6C01OTozmt/ZqmzY8dTPW06je4aEiVp/8Hv213vMySW4usQFMvNiaDp5Vw0i7oZYl0zpao2YuUvvSjIkA==
 
 readdirp@~3.6.0:
   version "3.6.0"

@@ -46,4 +46,12 @@ export class Point {
   public toIndex(width: number): number {
     return this.y * width + this.x
   }
+
+  public toString(): string {
+    return `(${this._x}, ${this._y})`
+  }
+
+  public toObject() {
+    return { x: this._x, y: this._y }
+  }
 }
