@@ -5,12 +5,15 @@ import { InputManager } from './Core/Input/InputManager'
 import logger from './Core/Logger'
 import { Renderer } from './Core/Renderer'
 import * as PIXI from 'pixi.js'
+import { Loader } from 'pixi.js'
+import { TMXLoaderPlugin } from './Core/Middlewares/TMXLoader'
 
 declare global {
   interface Window {
     __PIXI_INSPECTOR_GLOBAL_HOOK__: any
   }
 }
+
 export class Engine {
   public static _name = 'Clockwork Engine'
   public static _version = '0.0.1'
@@ -23,12 +26,21 @@ export class Engine {
   private _elapsed = 0
   private _width: number
   private _height: number
-  private _game: any
+  private _game: Game
   private _stats: Stats
+  private _loader: Loader
 
-  constructor(canvas: HTMLCanvasElement, gameArea: HTMLElement) {
+  constructor(
+    canvas: HTMLCanvasElement,
+    gameArea: HTMLElement,
+    width: number,
+    height: number,
+  ) {
     this._viewport = canvas
     this._gameArea = gameArea
+    this._width = width
+    this._height = height
+
     if (DEBUG_MODE) this._stats = new Stats()
   }
 
@@ -40,6 +52,10 @@ export class Engine {
     return this._height
   }
 
+  get loader() {
+    return this._loader
+  }
+
   private calculateAspectRatio(width: number, height: number) {
     if (width > height) {
       return width / height
@@ -48,8 +64,8 @@ export class Engine {
     }
   }
 
-  private onWindowResize() {
-    // logger.debug('Window resized')
+  private onResize() {
+    logger.debug('Window resized')
 
     let width = window.innerWidth
     let height = window.innerHeight
@@ -98,9 +114,9 @@ export class Engine {
     if (DEBUG_MODE) this._stats.end()
   }
 
-  start(width: number, height: number, game: Game) {
+  start(game: Game) {
     logger.debug('Engine started')
-    this._renderer = new Renderer(width, height, this._viewport)
+    this._renderer = new Renderer(this._width, this._height, this._viewport)
 
     // Display stats
     if (DEBUG_MODE) {
@@ -111,30 +127,35 @@ export class Engine {
         window.__PIXI_INSPECTOR_GLOBAL_HOOK__.register({ PIXI: PIXI })
       }
     }
+    // Add custom loaders
+    Loader.registerPlugin(TMXLoaderPlugin)
+
+    this._loader = Loader.shared
 
     // Load managers
     InputManager.initialize(this._viewport)
 
     // Set canvas size
-    this._viewport.width = width
-    this._viewport.height = height
-
-    this._width = width
-    this._height = height
+    this._viewport.width = this.width
+    this._viewport.height = this.height
 
     // Calculate aspect ratio
-    // this._aspect = this.calculateAspectRatio(width, height)
-
-    // Events
-    // window.addEventListener('resize', () => {
-    //   this.onWindowResize()
-    // })
+    this._aspect = this.calculateAspectRatio(this.width, this.height)
 
     // Init window size
-    // this.onWindowResize()
+    this.onResize()
 
     // Start game
     this._game = game
+
+    // Events
+    window.addEventListener('resize', () => {
+      this.onResize()
+      this._game.onResize()
+    })
+
+    // Start game
+    this._game.load()
     this._game.start()
 
     // start loop

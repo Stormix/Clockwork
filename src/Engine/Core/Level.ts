@@ -1,7 +1,6 @@
 import { Container } from '@pixi/display'
 import { Entity } from '../Entities/Entity'
 import { Game } from '../../Game/Game'
-import { LayerManager } from './LayerManager'
 import Logger from './Logger'
 
 export class Level extends Container {
@@ -9,10 +8,10 @@ export class Level extends Container {
   private _game: Game
   private _name: string
 
-  constructor(game: Game) {
+  constructor(game: Game, name: string) {
     super()
     this._game = game
-    this._name = 'level0'
+    this._name = name
   }
 
   private initialize() {
@@ -21,8 +20,6 @@ export class Level extends Container {
 
   public load() {
     this.initialize()
-    LayerManager.load(this)
-
     this._entites.forEach((entity) => {
       this.addChild(entity)
     })

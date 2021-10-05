@@ -5,8 +5,10 @@ import './style.scss'
 const canvas = document.getElementById('viewport') as HTMLCanvasElement
 const gameArea = document.getElementById('gameArea') as HTMLElement
 
-const engine = new Engine(canvas, gameArea)
+const ratio = 9 / 11
+const width = window.innerWidth
+const engine = new Engine(canvas, gameArea, 1280, width * ratio)
 
 window.onload = () => {
-  engine.start(1280, 720, new Game(engine))
+  engine.start(new Game(engine))
 }

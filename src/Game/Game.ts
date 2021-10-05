@@ -1,17 +1,29 @@
 import { IProcess } from '../Engine/Core/IProcess'
-import { LayerManager } from '../Engine/Core/LayerManager'
 import Logger from '../Engine/Core/Logger'
+import { Message } from '../Engine/Core/Messaging/Message'
 import { Renderer } from '../Engine/Core/Renderer'
 import { Engine } from '../Engine/Engine'
 import { Scene } from '../Engine/Scene'
-import { GameScene } from './Scenes/GameScene'
+import {
+  LoadingScene,
+  LOADING_COMPLETE,
+  LOADING_PROGRESS,
+} from './Scenes/LoadingScene'
 
 export class Game implements IProcess {
   private _engine: Engine
   private _scene?: Scene // Active scene
+  private _loadingProgress = 0
+  private _maps: string[] = []
+
+  onResize() {
+    // this._scene?.onResize()
+  }
 
   constructor(_engine: Engine) {
     this._engine = _engine
+    console.log(_engine)
+    this._scene = new LoadingScene(this)
   }
 
   get scene(): Scene {
@@ -30,15 +42,42 @@ export class Game implements IProcess {
     return this._engine.height
   }
 
+  get loadingProgress(): number {
+    return this._loadingProgress
+  }
+
+  set loadingProgress(value: number) {
+    this._loadingProgress = value
+    Message.send(LOADING_PROGRESS, this, value)
+  }
+
+  get maps() {
+    return this._maps
+  }
+
+  load(): void {
+    this._scene?.start()
+
+    const mapCount = 12
+    this._maps = [...new Array(mapCount)].map(
+      (_, i) => `assets/maps/tailed/tail_${i + 1}.tmx`,
+    )
+    Logger.info('Loading maps...', this._maps)
+
+    this._engine.loader.onProgress.add((loader) => {
+      this.loadingProgress = loader.progress
+    })
+
+    this._engine.loader.onComplete.add(() => {
+      Message.send(LOADING_COMPLETE, this, null)
+    })
+
+    this._engine.loader.add(this._maps).load()
+  }
+
   start(): void {
     Logger.debug('Game started.')
-    // Setup layers
-    LayerManager.initialize()
-
     // Setup scene
-    this._scene = new GameScene(this) // TODO: remove this class and load instead from file
-    LayerManager.load(this._scene)
-    this._scene.start()
   }
 
   stop(): void {
@@ -54,5 +93,11 @@ export class Game implements IProcess {
   render(_renderer: Renderer) {
     if (!this._scene) return
     _renderer.render(this._scene)
+  }
+
+  switchScene(scene: Scene) {
+    this._scene?.stop()
+    this._scene = scene
+    this._scene.start()
   }
 }
