@@ -1,7 +1,7 @@
 import { ILoaderPlugin, Loader, LoaderResource } from '@pixi/loaders'
 import * as tmx from 'tmx-parser'
-import Logger from '../Logger'
-import { dirname } from '../Tiled/dirname'
+import Logger from '../Core/Logger'
+import { dirname } from '../Core/Tiled/dirname'
 
 export class TMXLoaderPlugin implements ILoaderPlugin {
   static add() {

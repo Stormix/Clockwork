@@ -5,9 +5,10 @@ import { InputManager } from './Core/Input/InputManager'
 import logger from './Core/Logger'
 import { Renderer } from './Core/Renderer'
 import * as PIXI from 'pixi.js'
-import { TMXLoaderPlugin } from './Core/Middlewares/TMXLoader'
+import { TMXLoaderPlugin } from './Plugins/TMXLoader'
 import { BatchRenderer } from '@pixi/core'
 import { Loader } from '@pixi/loaders'
+import { AnimationLoaderPlugin } from './Plugins/AnimationLoader'
 
 declare global {
   interface Window {
@@ -130,6 +131,8 @@ export class Engine {
     }
     // Add custom plugins
     Loader.registerPlugin(TMXLoaderPlugin)
+    Loader.registerPlugin(AnimationLoaderPlugin)
+
     Renderer.registerPlugin('batch', BatchRenderer)
 
     this._loader = Loader.shared

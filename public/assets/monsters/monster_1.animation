@@ -1,0 +1,8 @@
+{
+  "animations_keys": ["ATTACK", "DIE", "HURT", "JUMP", "RUN", "WALK"],
+  "animation_length": 10,
+  "frame_number_format": "000",
+  "base_name": "1_enemies_1",
+  "assets_path": "monster_1/",
+  "extension": "png"
+}

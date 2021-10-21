@@ -1,6 +1,8 @@
 import { Container } from 'pixi.js'
 import { Entity } from '../../Entities/Entity'
 import EntityFactory from '../../Entities/EntityFactory'
+import { Level } from '../Level'
+import { Scale } from '../Utilities'
 export interface IObjectData {
   name: string
   type: string
@@ -18,10 +20,10 @@ export default class ObjectLayer extends Container {
     Object.assign(this, layer)
   }
 
-  public get entities(): Entity[] {
+  public createEntities(level: Level, scale: Scale): Entity[] {
     const entities: Entity[] = []
     this.objects.forEach((object) => {
-      const entity = EntityFactory.create(object)
+      const entity = EntityFactory.create(object, level, scale)
       if (entity) {
         entities.push(entity)
       }

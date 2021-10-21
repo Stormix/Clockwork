@@ -72,7 +72,9 @@ export class Game implements IProcess {
       Message.send(LOADING_COMPLETE, this, null)
     })
 
-    this._engine.loader.add([...this._maps]).load()
+    this._engine.loader
+      .add([...this._maps, 'assets/monsters/monster_1.animation'])
+      .load()
   }
 
   start(): void {

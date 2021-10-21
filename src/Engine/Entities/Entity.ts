@@ -5,6 +5,9 @@ import Logger from '../Core/Logger'
 
 export abstract class Entity extends Sprite {
   public name: string
+  public moveable = false
+  public animated = false
+
   constructor(texture?: Texture, name?: string) {
     super(texture)
     this.name = name || 'Entity'

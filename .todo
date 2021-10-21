@@ -1,12 +1,18 @@
-Engine:
-Tower Defense:
-  Map:
-    [x] Render maps
+Tower Defense Game & Clockwork Engine:
+  Completed:
+    ✔ Render maps @done(07-10-21 16:27)
+    ✔ Render enemies @done(21-10-21 16:27)
+    ✔ Animated Sprites @done(21-10-21 16:27)
+
+  To Do:
+    [] UI
+    [] Polish / Refactor Event system
+
+  Backlog:
+    [] Implement pixi-spriter once a stable version is out
     [] Render towers
-    [] Render enemies
     [] Render bullets
     [] Render explosions
     [] Render HUD
     [] Procedurally generated maps
-  Core:
-    [] Implement pixi-spriter once a stable version is out
+    [] Navigation and path finding

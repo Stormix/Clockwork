@@ -18,6 +18,10 @@ export class Level extends Container {
     return this._game
   }
 
+  get entities(): Entity[] {
+    return this._entites
+  }
+
   private initialize() {
     Logger.info('Initializing level: ', this._name)
   }

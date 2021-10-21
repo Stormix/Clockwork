@@ -7,3 +7,4 @@ dist-ssr
 .cache
 .parcel-cache
 __old__
+*.png

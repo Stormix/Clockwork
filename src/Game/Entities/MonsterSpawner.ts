@@ -1,35 +1,35 @@
+import { Level } from '../../Engine/Core/Level'
+import Logger from '../../Engine/Core/Logger'
 import { Monster } from './Monster'
 import { Spawner } from './Spawner'
 import { SpawnerType } from './SpawnerType'
 
 export class MonsterSpawner extends Spawner<Monster> {
-  constructor() {
-    super(SpawnerType.MonsterSpawner, 1000, 1) // Every 1s
-
-    // const start = scene.map.start
-
-    // this.x = start.x
-    // this.y = start.y
+  constructor(level: Level) {
+    super(SpawnerType.MonsterSpawner, 500, 100, level) // Every 1s
   }
 
   spawn(): Monster {
-    const monster = new Monster()
-    // const nextStep = this._scene.map.path[1]
+    const monster = new Monster('assets/monsters/monster_1.animation')
 
-    // Logger.info(`Spawning monster at ${nextStep.x}, ${nextStep.y}`)
+    monster.moveable = true
+    monster.size = 96
 
-    // monster.x = nextStep.x * this._scene.tileSize
-    // monster.y = nextStep.y * this._scene.tileSize
+    monster.x = this.x - monster.width / 2
+    monster.y = this.y - monster.height / 2
 
-    // monster.width = this._scene.tileSize
-    // monster.height = this._scene.tileSize
+    Logger.info(`> Spawning monster at ${this.x}, ${this.y}`)
+    Logger.info(`> Spawning monster at ${monster.x}, ${monster.y}`)
+
+    monster.setState('RUN')
+
+    this.level.addEntity(monster)
+    console.log(`Spawned monster at ${monster.x}, ${monster.y}`)
 
     return monster
   }
 
   update(delta: number): void {
-    // super.update(delta)
-    // Pass
-    // Logger.info('MonsterSpawner.update()')
+    super.update(delta)
   }
 }

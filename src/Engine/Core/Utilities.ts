@@ -6,3 +6,8 @@ export class Utilities {
     return arr[Math.floor(Math.random() * arr.length)]
   }
 }
+
+export interface Scale {
+  x: number
+  y: number
+}
