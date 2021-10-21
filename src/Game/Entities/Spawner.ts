@@ -1,14 +1,17 @@
 import Logger from '../../Engine/Core/Logger'
 import { Entity } from '../../Engine/Entities/Entity'
+import { SpawnerType } from './SpawnerType'
 
 export abstract class Spawner<T> extends Entity {
   private _spawnRate: number
   private _spawnCount: number
   private _spawned: number
   private _elapsedTime = 0
+  private _type: SpawnerType
 
-  constructor(_spawnRate: number, spawnCount: number) {
+  constructor(_type: SpawnerType, _spawnRate: number, spawnCount: number) {
     super()
+    this._type = _type
     this._spawnRate = _spawnRate
     this._spawnCount = spawnCount
     this._spawned = 0

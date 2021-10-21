@@ -7,7 +7,7 @@ const gameArea = document.getElementById('gameArea') as HTMLElement
 
 const ratio = 9 / 11
 const width = window.innerWidth
-const engine = new Engine(canvas, gameArea, 1280, width * ratio)
+const engine = new Engine(canvas, gameArea, 1920, width * ratio)
 
 window.onload = () => {
   engine.start(new Game(engine))

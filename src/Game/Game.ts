@@ -22,7 +22,6 @@ export class Game implements IProcess {
 
   constructor(_engine: Engine) {
     this._engine = _engine
-    console.log(_engine)
     this._scene = new LoadingScene(this)
   }
 
@@ -62,6 +61,7 @@ export class Game implements IProcess {
     this._maps = [...new Array(mapCount)].map(
       (_, i) => `assets/maps/tailed/tail_${i + 1}.tmx`,
     )
+
     Logger.info('Loading maps...', this._maps)
 
     this._engine.loader.onProgress.add((loader) => {
@@ -72,7 +72,7 @@ export class Game implements IProcess {
       Message.send(LOADING_COMPLETE, this, null)
     })
 
-    this._engine.loader.add(this._maps).load()
+    this._engine.loader.add([...this._maps]).load()
   }
 
   start(): void {

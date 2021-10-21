@@ -4,8 +4,10 @@ import { Texture } from 'pixi.js'
 import Logger from '../Core/Logger'
 
 export abstract class Entity extends Sprite {
-  constructor(texture?: Texture) {
+  public name: string
+  constructor(texture?: Texture, name?: string) {
     super(texture)
+    this.name = name || 'Entity'
   }
 
   abstract update(_delta: number): void

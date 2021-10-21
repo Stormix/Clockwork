@@ -14,5 +14,20 @@ export class GameLevel extends Level {
     this.map.height = game.height
 
     this.addChild(this.map)
+
+    this.loadEntities()
+  }
+
+  loadEntities() {
+    const objectLayers = this.map.objectLayers
+
+    Object.values(objectLayers).forEach((objectLayer) => {
+      objectLayer.entities.forEach((entity) => {
+        this.addEntity(entity)
+      })
+    })
+  }
+  public update(delta: number): void {
+    super.update(delta)
   }
 }

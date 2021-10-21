@@ -5,8 +5,9 @@ import { InputManager } from './Core/Input/InputManager'
 import logger from './Core/Logger'
 import { Renderer } from './Core/Renderer'
 import * as PIXI from 'pixi.js'
-import { Loader } from 'pixi.js'
 import { TMXLoaderPlugin } from './Core/Middlewares/TMXLoader'
+import { BatchRenderer } from '@pixi/core'
+import { Loader } from '@pixi/loaders'
 
 declare global {
   interface Window {
@@ -127,8 +128,9 @@ export class Engine {
         window.__PIXI_INSPECTOR_GLOBAL_HOOK__.register({ PIXI: PIXI })
       }
     }
-    // Add custom loaders
+    // Add custom plugins
     Loader.registerPlugin(TMXLoaderPlugin)
+    Renderer.registerPlugin('batch', BatchRenderer)
 
     this._loader = Loader.shared
 

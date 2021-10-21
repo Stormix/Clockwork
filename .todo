@@ -1,5 +1,4 @@
 Engine:
-  [] Layers support
 Tower Defense:
   Map:
     [x] Render maps
@@ -9,3 +8,5 @@ Tower Defense:
     [] Render explosions
     [] Render HUD
     [] Procedurally generated maps
+  Core:
+    [] Implement pixi-spriter once a stable version is out

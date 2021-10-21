@@ -4,11 +4,13 @@ import TileLayer from './TileLayer'
 import TileSet from './TileSet'
 import path from 'path'
 import { Game } from '../../../Game/Game'
+import ObjectLayer from './ObjectLayer'
 
 export class TiledMap extends Container {
   public resourceUrl: string
   public tileSets: TileSet[] = []
   public layers: { [index: string]: TileLayer } = {}
+  public objectLayers: { [index: string]: ObjectLayer } = {}
   public background = new Graphics()
   public tileWidth = 0
   public tileHeight = 0
@@ -24,10 +26,8 @@ export class TiledMap extends Container {
   public create() {
     const route = path.dirname(Loader.shared.resources[this.resourceUrl].url)
     const data: ITMXData = Loader.shared.resources[this.resourceUrl].data
-
     this.background.beginFill(0x000000, 1)
     this.background.drawRect(0, 0, this.game.width, this.game.height)
-    console.log(0, 0, this.game.width, this.game.height)
     this.background.endFill()
     this.addChild(this.background)
 
@@ -47,6 +47,12 @@ export class TiledMap extends Container {
           const imageLayer = new ImageLayer(layerData, route)
           this.layers[layerData.name] = imageLayer as TileLayer
           this.addChild(imageLayer)
+          break
+        }
+        case 'object': {
+          const objectLayer = new ObjectLayer(layerData)
+          this.objectLayers[layerData.name] = objectLayer
+          this.addChild(objectLayer)
           break
         }
       }

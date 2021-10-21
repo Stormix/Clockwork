@@ -1,16 +1,10 @@
-import { Game } from '../Game'
-import { GameScene } from '../Scenes/GameScene'
 import { Monster } from './Monster'
 import { Spawner } from './Spawner'
+import { SpawnerType } from './SpawnerType'
 
 export class MonsterSpawner extends Spawner<Monster> {
-  private _scene: GameScene
-  private _game: Game
-
-  constructor(scene: GameScene, game: Game) {
-    super(1000, 1) // Every 1s
-    this._scene = scene
-    this._game = game
+  constructor() {
+    super(SpawnerType.MonsterSpawner, 1000, 1) // Every 1s
 
     // const start = scene.map.start
 
@@ -31,5 +25,11 @@ export class MonsterSpawner extends Spawner<Monster> {
     // monster.height = this._scene.tileSize
 
     return monster
+  }
+
+  update(delta: number): void {
+    // super.update(delta)
+    // Pass
+    // Logger.info('MonsterSpawner.update()')
   }
 }

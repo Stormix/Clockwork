@@ -2,7 +2,6 @@ import { Scene } from '../../Engine/Scene'
 import { Game } from '../Game'
 import { Level } from '../../Engine/Core/Level'
 import { GameLevel } from '../Levels/GameLevel'
-import { Utilities } from '../../Engine/Core/Utilities'
 import Logger from '../../Engine/Core/Logger'
 
 export class GameScene extends Scene {
@@ -19,8 +18,10 @@ export class GameScene extends Scene {
   public start(): void {
     super.start()
     // Load a random map for now, we'll add difficulty later
-    const randomMap = Utilities.randomChoice<string>(this._game.maps)
+    // const randomMap = Utilities.randomChoice<string>(this._game.maps)
+    const randomMap = this._game.maps[1]
     const levelName = `${randomMap}`
+    Logger.info(`Loading level: ${levelName}`)
     this.loadLevel(new GameLevel(this._game, levelName, randomMap))
     Logger.info(this._level)
   }
@@ -33,5 +34,7 @@ export class GameScene extends Scene {
     super.stop()
   }
 
-  public update(deltaTime: number): void {}
+  public update(deltaTime: number): void {
+    this._level.update(deltaTime)
+  }
 }

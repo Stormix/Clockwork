@@ -14,8 +14,22 @@ export class Level extends Container {
     this._name = name
   }
 
+  get game(): Game {
+    return this._game
+  }
+
   private initialize() {
     Logger.info('Initializing level: ', this._name)
+  }
+
+  public addEntity(entity: Entity) {
+    this._entites.push(entity)
+    this.addChild(entity)
+  }
+
+  public removeEntity(entity: Entity) {
+    this._entites = this._entites.filter((e) => e !== entity)
+    this.removeChild(entity)
   }
 
   public load() {

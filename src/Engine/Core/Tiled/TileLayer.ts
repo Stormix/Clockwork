@@ -1,5 +1,4 @@
 import { Container, Texture } from 'pixi.js'
-import Logger from '../Logger'
 import Tile from './Tile'
 import { TiledMap } from './TiledMap'
 import TileSet from './TileSet'
@@ -39,10 +38,8 @@ export default class TileLayer extends Container {
     const oldtileWidth = this.layer.map.tileWidth
     const oldtileHeight = this.layer.map.tileHeight
 
-    const scaleX = 1 // this.tiledMap.game.width / this.layer.map.width / oldtileWidth
-    const scaleY = 1 // this.tiledMap.game.width / this.layer.map.height / oldtileHeight
-
-    Logger.info(`TileLayer: ${this.name}, scale`, scaleX, scaleY)
+    const scaleX = 1
+    const scaleY = 1
 
     const tileWidth = oldtileWidth * scaleX
     const tileHeight = oldtileHeight * scaleY
