@@ -10,11 +10,17 @@ import {
   LOADING_PROGRESS,
 } from './Scenes/LoadingScene'
 
+export enum Textures {
+  Monster,
+  Tower,
+}
+
 export class Game implements IProcess {
   private _engine: Engine
   private _scene?: Scene // Active scene
   private _loadingProgress = 0
   private _maps: string[] = []
+  public textures: string[]
 
   onResize() {
     // this._scene?.onResize()
@@ -71,6 +77,8 @@ export class Game implements IProcess {
     this._engine.loader.onComplete.add(() => {
       Message.send(LOADING_COMPLETE, this, null)
     })
+
+    this.textures = []
 
     this._engine.loader
       .add([...this._maps, 'assets/monsters/monster_1.animation'])

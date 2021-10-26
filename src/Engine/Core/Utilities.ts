@@ -1,3 +1,5 @@
+import { Point } from '@pixi/math'
+
 export class Utilities {
   public static exists(obj: any): boolean {
     return obj !== undefined && obj !== null
@@ -7,7 +9,4 @@ export class Utilities {
   }
 }
 
-export interface Scale {
-  x: number
-  y: number
-}
+export type Scale = Point

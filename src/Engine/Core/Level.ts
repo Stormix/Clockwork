@@ -22,36 +22,17 @@ export class Level extends Container {
     return this._entites
   }
 
-  private initialize() {
+  initialize() {
     Logger.info('Initializing level: ', this._name)
   }
 
-  public addEntity(entity: Entity) {
+  addEntity(entity: Entity) {
     this._entites.push(entity)
-    this.addChild(entity)
   }
 
-  public removeEntity(entity: Entity) {
-    this._entites = this._entites.filter((e) => e !== entity)
-    this.removeChild(entity)
+  removeEntity(entity: Entity) {
+    this._entites.splice(this._entites.indexOf(entity), 1)
   }
 
-  public load() {
-    this.initialize()
-    this._entites.forEach((entity) => {
-      this.addChild(entity)
-    })
-  }
-
-  public unload() {
-    this._entites.forEach((entity) => {
-      this.removeChild(entity)
-    })
-  }
-
-  public update(delta: number) {
-    this._entites.forEach((entity) => {
-      entity.update(delta)
-    })
-  }
+  public update(delta: number) {}
 }

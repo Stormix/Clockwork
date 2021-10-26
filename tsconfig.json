@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
-    "target": "ES6",
+    "target": "ESNext",
     "useDefineForClassFields": true,
-    "module": "ES6",
+    "module": "ESNext",
     "lib": ["ES6", "DOM"],
     "moduleResolution": "Node",
     "strict": true,
@@ -14,6 +14,7 @@
     "noUnusedParameters": false,
     "strictPropertyInitialization": false,
     "noImplicitReturns": true,
+    "experimentalDecorators": true,
     "typeRoots":[ "./src/types", "node_modules/@types"]
   },
   "include": ["./src"],

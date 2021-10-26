@@ -1,45 +1,25 @@
-import { Level } from '../../Engine/Core/Level'
-import Logger from '../../Engine/Core/Logger'
-import { Entity } from '../../Engine/Entities/Entity'
-import { SpawnerType } from './SpawnerType'
+import { IWorld } from 'bitecs'
+import { ClonableEntity } from './ClonableEntity'
 
-export abstract class Spawner<T> extends Entity {
-  private _spawnRate: number
-  private _spawnCount: number
-  private _spawned: number
-  private _elapsedTime = 0
-  private _type: SpawnerType
-  private _level: Level
+export abstract class Spawner extends ClonableEntity {
+  private _sample: ClonableEntity
 
-  constructor(
-    _type: SpawnerType,
-    _spawnRate: number,
-    spawnCount: number,
-    level: Level,
-  ) {
-    super()
-    this._type = _type
-    this._spawnRate = _spawnRate
-    this._spawnCount = spawnCount
-    this._spawned = 0
-    this._level = level
+  constructor(raw: {
+    eid: number
+    world: IWorld
+    name?: string
+    sample: ClonableEntity
+  }) {
+    super(raw)
+    this._sample = raw.sample
   }
 
-  update(deltaTime: number): void {
-    if (this._spawned < this._spawnCount) {
-      this._elapsedTime += deltaTime * 1000
-      if (this._elapsedTime >= this._spawnRate) {
-        this._elapsedTime = 0
-        this._spawned++
-        this.spawn()
-        Logger.info(`Spawner: ${this._spawned}/${this._spawnCount}`)
-      }
-    }
+  spawn() {
+    return this._sample.clone()
   }
+}
 
-  get level(): Level {
-    return this._level
-  }
-
-  abstract spawn(): T
+export interface SpawnerProperties {
+  EntityType: string
+  SpawnerType: string
 }

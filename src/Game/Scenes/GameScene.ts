@@ -25,6 +25,7 @@ export class GameScene extends Scene {
     this.loadLevel(new GameLevel(this._game, levelName, randomMap))
     Logger.info(this._level)
   }
+
   loadLevel(level: GameLevel) {
     this._level = level
     this.addChild(this._level)

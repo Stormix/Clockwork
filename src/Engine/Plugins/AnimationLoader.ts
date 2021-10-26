@@ -1,7 +1,6 @@
 import { ILoaderPlugin, Loader, LoaderResource } from '@pixi/loaders'
 import path from 'path'
 import Logger from '../Core/Logger'
-import { dirname } from '../Core/Tiled/dirname'
 
 export interface IAnimationState {
   name: string
@@ -36,7 +35,7 @@ export class AnimationLoaderPlugin implements ILoaderPlugin {
       return next()
     }
 
-    const route = dirname(resource.url)
+    const route = path.dirname(resource.url)
     const loadOptions = {
       crossOrigin: resource.crossOrigin,
       parentResource: resource,

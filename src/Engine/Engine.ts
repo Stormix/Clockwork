@@ -101,19 +101,23 @@ export class Engine {
   }
 
   private loop(newTime: number) {
-    requestAnimationFrame(this.loop.bind(this))
+    try {
+      requestAnimationFrame(this.loop.bind(this))
 
-    // Mesure time
-    const lastTime = this._gameTime
-    this._gameTime = newTime
-    const deltaTime = (this._gameTime - lastTime) / 1000
-    this._elapsed += deltaTime
+      // Mesure time
+      const lastTime = this._gameTime
+      this._gameTime = newTime
+      const deltaTime = (this._gameTime - lastTime) / 1000
+      this._elapsed += deltaTime
 
-    // Update
-    if (DEBUG_MODE) this._stats.begin()
-    this.update(deltaTime)
-    this.render()
-    if (DEBUG_MODE) this._stats.end()
+      // Update
+      if (DEBUG_MODE) this._stats.begin()
+      this.update(deltaTime)
+      this.render()
+      if (DEBUG_MODE) this._stats.end()
+    } catch (e) {
+      logger.error(e)
+    }
   }
 
   start(game: Game) {

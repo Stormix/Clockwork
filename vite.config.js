@@ -8,5 +8,14 @@ export default defineConfig({
     alias: {
       path: 'path-browserify',
     },
+    extensions: ['.js', '.ts'],
+  },
+  server: {
+    watch: {
+      usePolling: true,
+    },
+    fs: {
+      strict: true,
+    },
   },
 })

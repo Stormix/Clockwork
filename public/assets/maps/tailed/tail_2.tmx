@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="11" height="9" tilewidth="256" tileheight="256" infinite="0" nextlayerid="8" nextobjectid="4">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="11" height="9" tilewidth="256" tileheight="256" infinite="0" nextlayerid="8" nextobjectid="9">
  <tileset firstgid="1" name="tail" tilewidth="256" tileheight="256" tilecount="56" columns="0">
   <grid orientation="orthogonal" width="1" height="1"/>
   <tile id="49">
@@ -239,8 +239,27 @@
  <objectgroup id="7" name="spawn">
   <object id="3" name="MonsterSpawner1" type="Spawner" x="35" y="1670.67">
    <properties>
-    <property name="SpawnerType" value="MonsterSpawner"/>
+    <property name="EntityType" value="Goblin"/>
+    <property name="SpawnerType" value="WaveSpawner"/>
+    <property name="WaveCount" type="float" value="1"/>
+    <property name="WaveInterval" type="float" value="1000"/>
+    <property name="WaveSize" type="float" value="5"/>
    </properties>
+   <point/>
+  </object>
+  <object id="4" name="Tower1" type="Tower" x="124" y="1398">
+   <point/>
+  </object>
+  <object id="5" name="Tower2" type="Tower" x="128" y="1914">
+   <point/>
+  </object>
+  <object id="6" name="Tower3" type="Tower" x="1400" y="1914">
+   <point/>
+  </object>
+  <object id="7" name="Tower4" type="Tower" x="1918.18" y="118.182">
+   <point/>
+  </object>
+  <object id="8" name="Tower5" type="Tower" x="2687.88" y="633.333">
    <point/>
   </object>
  </objectgroup>
