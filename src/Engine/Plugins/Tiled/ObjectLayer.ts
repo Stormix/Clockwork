@@ -2,7 +2,7 @@ import { Container } from 'pixi.js'
 import { GameLevel } from '../../../Game/Levels/GameLevel'
 import { Entity } from '../../Entities/Entity'
 import EntityFactory from '../../Entities/EntityFactory'
-import { Scale } from '../Utilities'
+import { Scale } from '../../Core/Utilities'
 export interface IObjectData {
   name: string
   type: string

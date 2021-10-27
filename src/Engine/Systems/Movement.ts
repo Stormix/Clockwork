@@ -1,9 +1,9 @@
 import { defineSystem, defineQuery } from 'bitecs'
 
-import { PositionComponent } from '../components/Position'
-import { VelocityComponent } from '../components/Velocity'
-import { RotationComponent } from '../components/Rotation'
-import { InputComponent, Direction } from '../components/Input'
+import { PositionComponent } from '../Entities/Components/Position'
+import { VelocityComponent } from '../Entities/Components/Velocity'
+import { RotationComponent } from '../Entities/Components/Rotation'
+import { InputComponent } from '../Entities/Components/Input'
 
 export default function createMovementSystem() {
   const movementQuery = defineQuery([
@@ -18,40 +18,6 @@ export default function createMovementSystem() {
 
     for (let i = 0; i < entities.length; ++i) {
       const id = entities[i]
-
-      const direction = InputComponent.direction[id]
-      const speed = InputComponent.speed[id]
-
-      switch (direction) {
-        case Direction.None:
-          VelocityComponent.x[id] = 0
-          VelocityComponent.y[id] = 0
-          break
-
-        case Direction.Left:
-          VelocityComponent.x[id] = -speed
-          VelocityComponent.y[id] = 0
-          RotationComponent.angle[id] = 180
-          break
-
-        case Direction.Right:
-          VelocityComponent.x[id] = speed
-          VelocityComponent.y[id] = 0
-          RotationComponent.angle[id] = 0
-          break
-
-        case Direction.Up:
-          VelocityComponent.x[id] = 0
-          VelocityComponent.y[id] = -speed
-          RotationComponent.angle[id] = 270
-          break
-
-        case Direction.Down:
-          VelocityComponent.x[id] = 0
-          VelocityComponent.y[id] = speed
-          RotationComponent.angle[id] = 90
-          break
-      }
 
       PositionComponent.x[id] += VelocityComponent.x[id]
       PositionComponent.y[id] += VelocityComponent.y[id]

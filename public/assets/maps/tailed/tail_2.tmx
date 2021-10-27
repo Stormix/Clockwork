@@ -241,7 +241,7 @@
    <properties>
     <property name="EntityType" value="Goblin"/>
     <property name="SpawnerType" value="WaveSpawner"/>
-    <property name="WaveCount" type="float" value="1"/>
+    <property name="WaveCount" type="float" value="5"/>
     <property name="WaveInterval" type="float" value="1000"/>
     <property name="WaveSize" type="float" value="5"/>
    </properties>

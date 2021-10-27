@@ -1,11 +1,12 @@
 import { addEntity, IWorld } from 'bitecs'
-import { Level } from '../../Engine/Core/Level'
-import Logger from '../../Engine/Core/Logger'
-import EntityFactory from '../../Engine/Entities/EntityFactory'
-import { GameLevel } from '../Levels/GameLevel'
+import { Level } from '../Core/Level'
+import Logger from '../Core/Logger'
+import { IObjectData } from '../Plugins/Tiled/ObjectLayer'
+import EntityFactory from './EntityFactory'
+import { GameLevel } from '../../Game/Levels/GameLevel'
 import { ClonableEntity } from './ClonableEntity'
-import Monster from './Monster'
-import { Spawner, SpawnerProperties } from './Spawner'
+import Monster from '../../Game/Entities/Monster'
+import { Spawner, SpawnerProperties } from '../../Engine/Entities/Spawner'
 
 export class WaveSpawner extends Spawner {
   private _waveSize: number
@@ -61,24 +62,37 @@ export class WaveSpawner extends Spawner {
   }
 
   public static fromObject(
-    props: WaveSpawnerProperties,
+    object: IObjectData,
     level: GameLevel,
     entityType: string,
   ) {
     switch (entityType) {
       case 'Goblin':
+        const props = object.properties as WaveSpawnerProperties
         const eid = addEntity(level.world)
-        return new WaveSpawner({
+        const sample = EntityFactory.createEntity<Monster>(Monster, {
+          world: level.world,
+        })
+
+        const { x: _x, y: _y } = object
+        const { x, y } = level.toWorldCoordinates(_x, _y)
+
+        sample.hide() // The parent entity shouldn't be visible
+
+        const spawner = new WaveSpawner({
           eid,
           world: level.world,
-          sample: EntityFactory.createEntity<Monster>(Monster, {
-            world: level.world,
-          }),
+          sample,
           waveSize: props.WaveSize,
           waveCount: props.WaveCount,
           spawnInterval: props.WaveInterval,
           level: level,
         })
+
+        spawner.setPosition(x, y)
+
+        return spawner
+
       default:
         Logger.warn(`Unknown entity type: ${entityType}`)
         return null

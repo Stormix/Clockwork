@@ -1,10 +1,10 @@
 import { addComponent, IWorld } from 'bitecs'
-import { Direction, InputComponent } from '../components/Input'
-import { PositionComponent } from '../components/Position'
-import { RotationComponent } from '../components/Rotation'
-import { SizeComponent } from '../Components/Size'
-import { SpriteComponent } from '../Components/Sprite'
-import { VelocityComponent } from '../components/Velocity'
+import { InputComponent } from './Components/Input'
+import { PositionComponent } from './Components/Position'
+import { RotationComponent } from './Components/Rotation'
+import { SizeComponent } from './Components/Size'
+import { SpriteComponent } from './Components/Sprite'
+import { VelocityComponent } from './Components/Velocity'
 
 export abstract class Entity {
   public name: string
@@ -23,23 +23,25 @@ export abstract class Entity {
     addComponent(this.world, SizeComponent, this.eid)
     addComponent(this.world, InputComponent, this.eid)
 
-    PositionComponent.x[this.eid] = 0
-    PositionComponent.y[this.eid] = 0
-
-    SizeComponent.width[this.eid] = 72
-    SizeComponent.height[this.eid] = 72
-
-    InputComponent.direction[this.eid] = Direction.Right
-    InputComponent.speed[this.eid] = 10
+    // Set some defaults
+    this.setSize(72)
+    this.setPosition(0, 0)
+    this.setRotation(0)
+    this.setVelocity(0.1, 0)
+    this.setVisibility(true)
   }
 
-  set size(value: number) {
+  hide() {
+    SpriteComponent.visible[this.eid] = 0
+  }
+
+  setVisibility(value: boolean) {
+    SpriteComponent.visible[this.eid] = value ? 1 : 0
+  }
+
+  setSize(value: number) {
     SizeComponent.width[this.eid] = value
     SizeComponent.height[this.eid] = value
-  }
-
-  get size() {
-    return SizeComponent.width[this.eid]
   }
 
   setPosition(x: number, y: number) {
@@ -47,12 +49,38 @@ export abstract class Entity {
     PositionComponent.y[this.eid] = y
   }
 
-  getPosition() {
+  setVelocity(x: number, y: number) {
+    VelocityComponent.x[this.eid] = x
+    VelocityComponent.y[this.eid] = y
+  }
+
+  setRotation(value: number) {
+    RotationComponent.angle[this.eid] = value
+  }
+
+  get velocity() {
+    return {
+      x: VelocityComponent.x[this.eid],
+      y: VelocityComponent.y[this.eid],
+    }
+  }
+
+  get rotation() {
+    return RotationComponent.angle[this.eid]
+  }
+
+  get position() {
     return {
       x: PositionComponent.x[this.eid],
       y: PositionComponent.y[this.eid],
     }
   }
 
+  get size() {
+    return {
+      width: SizeComponent.width[this.eid],
+      height: SizeComponent.height[this.eid],
+    }
+  }
   abstract update(_delta: number): void
 }

@@ -1,12 +1,11 @@
 import { Level } from '../../Engine/Core/Level'
-import { TiledMap } from '../../Engine/Core/Tiled/TiledMap'
+import { TiledMap } from '../../Engine/Plugins/Tiled/TiledMap'
 import { Game } from '../Game'
 import { createWorld, IWorld, System } from 'bitecs'
 import createMovementSystem from '../../Engine/Systems/Movement'
 import { createSpriteSystem } from '../../Engine/Systems/Sprite'
 import Logger from '../../Engine/Core/Logger'
 import EntityFactory from '../../Engine/Entities/EntityFactory'
-import { WaveSpawner } from '../Entities/WaveSpawner'
 
 export class GameLevel extends Level {
   map: TiledMap
@@ -33,8 +32,6 @@ export class GameLevel extends Level {
 
   initialize(): void {
     super.initialize()
-    const spawner = this.entities[0] as WaveSpawner
-    spawner.start()
   }
 
   private setupEntitySystems() {
@@ -58,10 +55,10 @@ export class GameLevel extends Level {
     this.map.height = this.game.height
 
     this.addChild(this.map)
-    this.setupMapObjects()
+    this.setupMapEntities()
   }
 
-  private setupMapObjects(): void {
+  private setupMapEntities(): void {
     // Entities
     for (const layerName in this.map.objectLayers) {
       switch (layerName) {
@@ -84,6 +81,13 @@ export class GameLevel extends Level {
           Logger.warn(`Unknown object layer: ${layerName}`)
           break
       }
+    }
+  }
+
+  public toWorldCoordinates(x: number, y: number): { x: number; y: number } {
+    return {
+      x: x * this.mapScale.x,
+      y: y * this.mapScale.y,
     }
   }
 

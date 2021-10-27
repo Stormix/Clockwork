@@ -1,10 +1,9 @@
-import { addEntity, IWorld } from 'bitecs'
-import { ClonableEntity } from './ClonableEntity'
+import { addEntity } from 'bitecs'
+import { EntityParams } from '../../Engine/Entities/EntityFactory'
+import { ClonableEntity } from '../../Engine/Entities/ClonableEntity'
 
 export default class Monster extends ClonableEntity {
-  public velocity = 250 // step per second
-
-  constructor(raw: { eid: number; world: IWorld; name?: string }) {
+  constructor(raw: EntityParams) {
     super(raw)
   }
 
@@ -12,10 +11,14 @@ export default class Monster extends ClonableEntity {
 
   clone(): Monster {
     const eid = addEntity(this.world)
-    return new Monster({
+    const copy = new Monster({
       eid,
       world: this.world,
       name: this.name + ' Clone',
     })
+
+    copy.setPosition(this.position.x, this.position.y)
+
+    return copy
   }
 }
