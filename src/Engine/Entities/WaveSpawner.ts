@@ -74,9 +74,10 @@ export class WaveSpawner extends Spawner {
       case 'Goblin':
         const props = object.properties as WaveSpawnerProperties
         const eid = addEntity(level.world)
+
         const sample = EntityFactory.createEntity<Monster>(Monster, {
           world: level.world,
-          path: level.path,
+          level: level,
         })
 
         const { x: _x, y: _y } = object

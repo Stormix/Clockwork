@@ -19,6 +19,7 @@ export default class Monster extends Mixin(ClonableEntity, PathFollowing) {
     if (!raw.level.path) {
       throw new Error('A PathFollowing entity needs a path')
     }
+    this._level = raw.level
     this._path = raw.level.path
     addComponent(this.world, NavigationComponent, this.eid)
     addComponent(this.world, SteeringComponent, this.eid)

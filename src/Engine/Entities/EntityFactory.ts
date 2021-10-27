@@ -4,7 +4,7 @@ import { GameLevel } from '../../Game/Levels/GameLevel'
 import Logger from '../Core/Logger'
 import { IObjectData } from '../Plugins/Tiled/ObjectLayer'
 import { Entity } from './Entity'
-import Monster from '../../Game/Entities/Monster'
+import { WaveSpawner } from './WaveSpawner'
 
 export interface EntityParams {
   eid: number
@@ -45,18 +45,7 @@ export default class EntityFactory {
 
     switch (SpawnerType) {
       case 'WaveSpawner':
-        // const { WaveCount, WaveSize, WaveInterval } =
-        //   object.properties as WaveSpawnerProperties
-
-        // return WaveSpawner.fromObject(object, gameLevel, EntityType)
-        const monster = EntityFactory.createEntity(Monster, {
-          world: gameLevel.world,
-          level: gameLevel,
-        })
-
-        const { x, y } = gameLevel.toWorldCoordinates(object.x, object.y)
-        monster.setPosition(x, y)
-        return monster
+        return WaveSpawner.fromObject(object, gameLevel, EntityType)
 
       default:
         Logger.error(`Spawner: ${SpawnerType} is not supported`)
