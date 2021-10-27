@@ -3,16 +3,29 @@ import { Game } from '../Game'
 import { Level } from '../../Engine/Core/Level'
 import { GameLevel } from '../Levels/GameLevel'
 import Logger from '../../Engine/Core/Logger'
+import { Viewport } from 'pixi-viewport'
 
 export class GameScene extends Scene {
   private _game: Game
   private _level: Level
+  private _viewport: Viewport
 
   constructor(game: Game) {
     super()
     this._game = game
 
     this.visible = false
+    // create viewport
+    this._viewport = new Viewport({
+      screenWidth: window.innerWidth,
+      screenHeight: window.innerHeight,
+      worldWidth: 1000,
+      worldHeight: 1000,
+    })
+
+    this.addChild(this._viewport)
+    // activate plugins
+    this._viewport.drag().pinch().wheel().decelerate()
   }
 
   public start(): void {
@@ -28,7 +41,7 @@ export class GameScene extends Scene {
 
   loadLevel(level: GameLevel) {
     this._level = level
-    this.addChild(this._level)
+    this._viewport.addChild(this._level)
   }
 
   public stop(): void {
