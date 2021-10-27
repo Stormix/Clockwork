@@ -36,6 +36,6 @@ export class GameScene extends Scene {
   }
 
   public update(deltaTime: number): void {
-    this._level.update(deltaTime)
+    this._level?.update(deltaTime)
   }
 }

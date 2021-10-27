@@ -3,6 +3,7 @@ import { GameLevel } from '../../../Game/Levels/GameLevel'
 import { Entity } from '../../Entities/Entity'
 import EntityFactory from '../../Entities/EntityFactory'
 import { Scale } from '../../Core/Utilities'
+
 export interface IObjectData {
   name: string
   type: string
@@ -10,9 +11,16 @@ export interface IObjectData {
   y: number
   properties?: Record<string, any>
 }
+
+export interface IPolygonData extends IObjectData {
+  polygon: { x: number; y: number }[]
+  polyline: unknown
+}
+
 export default class ObjectLayer extends Container {
   public layer: ILayerData
   public objects: IObjectData[]
+  public properties: Record<string, any>
 
   constructor(layer: ILayerData) {
     super()

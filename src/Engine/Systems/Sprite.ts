@@ -21,7 +21,6 @@ export const createSpriteSystem = (scene: Level, textures: string[]) => {
       const eid = entitiesEntered[i]
       const texId = SpriteComponent.texture[eid]
       const texture = textures[texId]
-      console.log(`Creating sprite for entity #${eid}`, texture)
       spritesByEid.set(eid, scene.addChild(Sprite.from(texture)))
     }
 

@@ -6,10 +6,13 @@ import createMovementSystem from '../../Engine/Systems/Movement'
 import { createSpriteSystem } from '../../Engine/Systems/Sprite'
 import Logger from '../../Engine/Core/Logger'
 import EntityFactory from '../../Engine/Entities/EntityFactory'
+import { Path } from '../../Engine/Navigation/Path'
+import { IPolygonData } from '../../Engine/Plugins/Tiled/ObjectLayer'
 
 export class GameLevel extends Level {
   map: TiledMap
   world: IWorld
+  _path: Path
 
   private movementSystem: System
   private spriteSystem: System
@@ -58,9 +61,26 @@ export class GameLevel extends Level {
     this.setupMapEntities()
   }
 
+  get path() {
+    return this._path
+  }
+
+  set path(path: Path) {
+    this._path = path
+  }
+
   private setupMapEntities(): void {
-    // Entities
-    for (const layerName in this.map.objectLayers) {
+    // Ensure that the path is loaded
+    const sortedLayers = Object.keys(this.map.objectLayers).sort(
+      (a: string, b: string) => {
+        const layerA = this.map.objectLayers[a]
+        const layerB = this.map.objectLayers[b]
+
+        return layerA.properties?.order - layerB.properties?.order
+      },
+    )
+
+    for (const layerName of sortedLayers) {
       switch (layerName) {
         case 'spawn':
           // This layer defines the locations of certain entities
@@ -75,6 +95,36 @@ export class GameLevel extends Level {
               this.addEntity(entity)
             }
           }
+
+          break
+        case 'path':
+          Logger.info(`Path Layer: ${layerName}`)
+          const pathObjects = this.map.objectLayers[layerName].objects
+          const path = pathObjects.find(
+            (pathObject) => pathObject.name === 'NavigationPath',
+          )
+
+          if (!path) {
+            Logger.error('No path found')
+            return
+          }
+
+          const constructedPath = Path.fromObject(
+            path as IPolygonData,
+            this.mapScale,
+            {
+              height: this.map.height,
+              width: this.map.width,
+            },
+          )
+
+          if (!constructedPath) {
+            Logger.error('Could not construct path')
+            return
+          }
+
+          this.path = constructedPath
+          this.addChild(this.path.toGraphics())
 
           break
         default:

@@ -1,10 +1,10 @@
 import { addEntity, IWorld } from 'bitecs'
 import { SpawnerProperties } from './Spawner'
-import { WaveSpawner, WaveSpawnerProperties } from './WaveSpawner'
 import { GameLevel } from '../../Game/Levels/GameLevel'
 import Logger from '../Core/Logger'
 import { IObjectData } from '../Plugins/Tiled/ObjectLayer'
 import { Entity } from './Entity'
+import Monster from '../../Game/Entities/Monster'
 
 export interface EntityParams {
   eid: number
@@ -45,10 +45,18 @@ export default class EntityFactory {
 
     switch (SpawnerType) {
       case 'WaveSpawner':
-        const { WaveCount, WaveSize, WaveInterval } =
-          object.properties as WaveSpawnerProperties
+        // const { WaveCount, WaveSize, WaveInterval } =
+        //   object.properties as WaveSpawnerProperties
 
-        return WaveSpawner.fromObject(object, gameLevel, EntityType)
+        // return WaveSpawner.fromObject(object, gameLevel, EntityType)
+        const monster = EntityFactory.createEntity(Monster, {
+          world: gameLevel.world,
+          level: gameLevel,
+        })
+
+        const { x, y } = gameLevel.toWorldCoordinates(object.x, object.y)
+        monster.setPosition(x, y)
+        return monster
 
       default:
         Logger.error(`Spawner: ${SpawnerType} is not supported`)

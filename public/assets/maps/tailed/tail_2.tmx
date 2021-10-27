@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="11" height="9" tilewidth="256" tileheight="256" infinite="0" nextlayerid="8" nextobjectid="9">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="11" height="9" tilewidth="256" tileheight="256" infinite="0" nextlayerid="9" nextobjectid="10">
  <tileset firstgid="1" name="tail" tilewidth="256" tileheight="256" tilecount="56" columns="0">
   <grid orientation="orthogonal" width="1" height="1"/>
   <tile id="49">
@@ -197,19 +197,6 @@
 73,73,73,73,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer id="1" name="road" width="11" height="9">
-  <data encoding="csv">
-0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,50,56,56,51,0,
-0,0,0,0,50,55,53,54,52,53,0,
-0,0,0,0,54,0,0,54,0,0,0,
-0,0,0,50,53,0,0,54,0,0,0,
-0,0,50,57,58,59,0,54,0,0,0,
-55,55,2684354616,54,60,61,56,3221225528,51,0,0,
-0,0,52,3221225528,53,0,52,55,53,0,0,
-0,0,0,0,0,0,0,0,0,0,0
-</data>
- </layer>
  <layer id="3" name="river" width="11" height="9">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,
@@ -220,29 +207,45 @@
 0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0
+0,0,62,63,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="1" name="road" width="11" height="9">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,50,55,55,51,0,
+0,0,0,0,50,55,53,50,55,53,0,
+0,0,0,0,54,0,0,54,0,0,0,
+0,0,0,50,53,0,0,54,0,0,0,
+0,0,50,53,0,0,0,54,0,0,0,
+55,55,53,0,50,55,51,52,51,0,0,
+0,0,0,50,53,0,52,55,53,0,0,
+0,0,0,2684354663,0,0,0,0,0,0,0
 </data>
  </layer>
  <layer id="5" name="obj" width="11" height="9">
   <data encoding="csv">
 86,85,0,86,0,0,71,77,84,83,0,
 93,82,80,91,84,79,0,0,0,0,86,
-94,79,91,81,0,0,75,0,92,75,77,
+94,79,91,81,0,0,92,0,0,0,77,
 0,95,96,0,103,0,0,103,0,0,0,
 91,97,98,0,0,0,0,0,0,0,92,
-77,83,0,0,0,0,83,0,83,0,84,
-0,0,0,0,0,75,0,0,0,81,79,
-77,79,0,0,0,77,0,0,0,99,100,
-71,76,62,63,87,82,76,72,86,101,102
+77,83,0,0,0,104,83,0,83,0,84,
+0,0,93,0,0,0,0,0,0,81,79,
+77,79,94,0,0,77,0,0,0,99,100,
+71,76,0,0,87,82,76,72,86,101,102
 </data>
  </layer>
  <objectgroup id="7" name="spawn">
+  <properties>
+   <property name="order" type="float" value="1"/>
+  </properties>
   <object id="3" name="MonsterSpawner1" type="Spawner" x="35" y="1670.67">
    <properties>
     <property name="EntityType" value="Goblin"/>
     <property name="SpawnerType" value="WaveSpawner"/>
     <property name="WaveCount" type="float" value="5"/>
-    <property name="WaveInterval" type="float" value="1000"/>
+    <property name="WaveInterval" type="float" value="5000"/>
     <property name="WaveSize" type="float" value="5"/>
    </properties>
    <point/>
@@ -261,6 +264,14 @@
   </object>
   <object id="8" name="Tower5" type="Tower" x="2687.88" y="633.333">
    <point/>
+  </object>
+ </objectgroup>
+ <objectgroup id="8" name="path">
+  <properties>
+   <property name="order" type="float" value="0"/>
+  </properties>
+  <object id="9" name="NavigationPath" type="Path" x="34" y="1668">
+   <polygon points="0,0 428,-2 500,-20 596,-116 668,-248 828,-322 920,-486 1098,-578 1124,-930 1222,-1040 1520,-1046 1654,-1164 1734,-1292 2222,-1294 2378,-1230 2404,-1122 2290,-1036 1974,-1010 1886,-858 1898,-126 1992,-8 2120,54 2138,126 2010,276 1732,256 1584,58 1354,-14 1168,50 996,266 866,342 878,632 -90,674 -90,10"/>
   </object>
  </objectgroup>
 </map>

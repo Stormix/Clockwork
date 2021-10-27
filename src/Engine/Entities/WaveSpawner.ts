@@ -51,8 +51,12 @@ export class WaveSpawner extends Spawner {
       this._elapsedTime = 0
       this._spawnedWaves++
       for (let i = 0; i < this._waveSize; i++) {
-        Logger.info(`Spawning ${i} entity`)
-        this._level.addEntity(this.spawn())
+        const entity = this.spawn()
+        entity.setPosition(
+          this.position.x + Math.random() * 50,
+          this.position.y - 20 * i * 0.2,
+        )
+        this._level.addEntity(entity)
       }
     }
 
@@ -72,6 +76,7 @@ export class WaveSpawner extends Spawner {
         const eid = addEntity(level.world)
         const sample = EntityFactory.createEntity<Monster>(Monster, {
           world: level.world,
+          path: level.path,
         })
 
         const { x: _x, y: _y } = object
@@ -90,6 +95,7 @@ export class WaveSpawner extends Spawner {
         })
 
         spawner.setPosition(x, y)
+        spawner.start()
 
         return spawner
 

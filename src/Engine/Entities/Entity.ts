@@ -1,4 +1,10 @@
-import { addComponent, IWorld } from 'bitecs'
+import {
+  addComponent,
+  Component,
+  getEntityComponents,
+  hasComponent,
+  IWorld,
+} from 'bitecs'
 import { InputComponent } from './Components/Input'
 import { PositionComponent } from './Components/Position'
 import { RotationComponent } from './Components/Rotation'
@@ -10,7 +16,6 @@ export abstract class Entity {
   public name: string
   public eid: number
   public world: Readonly<IWorld>
-
   constructor(raw: { eid: number; world: IWorld; name?: string }) {
     this.name = raw.name ?? 'Entity'
     this.eid = raw.eid
@@ -27,8 +32,16 @@ export abstract class Entity {
     this.setSize(72)
     this.setPosition(0, 0)
     this.setRotation(0)
-    this.setVelocity(0.1, 0)
+    this.setVelocity(0, 0)
     this.setVisibility(true)
+  }
+
+  hasComponent(component: Component) {
+    return hasComponent(this.world, component, this.eid)
+  }
+
+  components() {
+    return getEntityComponents(this.world, this.eid)
   }
 
   hide() {
