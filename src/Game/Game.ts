@@ -1,8 +1,8 @@
 import { IProcess } from '../Engine/Core/IProcess'
 import Logger from '../Engine/Core/Logger'
-import { Message } from '../Engine/Core/Messaging/Message'
 import { Renderer } from '../Engine/Core/Renderer'
 import { Engine } from '../Engine/Engine'
+import { Event } from '../Engine/Events/Event'
 import { Scene } from '../Engine/Scene'
 import {
   LoadingScene,
@@ -53,7 +53,7 @@ export class Game implements IProcess {
 
   set loadingProgress(value: number) {
     this._loadingProgress = value
-    Message.send(LOADING_PROGRESS, this, value)
+    this._engine.eventBus.publish(new Event(LOADING_PROGRESS, value))
   }
 
   get maps() {
@@ -75,7 +75,7 @@ export class Game implements IProcess {
     })
 
     this._engine.loader.onComplete.add(() => {
-      Message.send(LOADING_COMPLETE, this, null)
+      this._engine.eventBus.publish(new Event(LOADING_COMPLETE, null))
     })
 
     this.textures = []

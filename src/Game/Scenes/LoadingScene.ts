@@ -1,21 +1,20 @@
 import { Scene } from '../../Engine/Scene'
 import { Game } from '../Game'
-import { IMessageHandler } from '../../Engine/Core/Messaging/IMessageHandler'
-import { IMessage } from '../../Engine/Core/Messaging/IMessage'
-import { Message } from '../../Engine/Core/Messaging/Message'
 import { Graphics } from '@pixi/graphics'
 import { GameScene } from './GameScene'
+import { Subscriber } from '../../Engine/Events/Subscriber'
 
 export const LOADING_PROGRESS = 'LOADING_PROGRESS'
 export const LOADING_COMPLETE = 'LOADING_COMPLETE'
 
-export class LoadingScene extends Scene implements IMessageHandler {
+export class LoadingScene extends Scene {
   private _game: Game
   private _progressBarContainer: Graphics
   private _progressBar: Graphics
   private _bg: Graphics
   private _progressBarSize: number
   private _progressBarWidth: number
+  private _loadingListeners: Subscriber[]
 
   constructor(game: Game) {
     super()
@@ -23,20 +22,17 @@ export class LoadingScene extends Scene implements IMessageHandler {
     this._progressBarSize = 0.6 * game.width
     this._progressBarWidth = 0.01 * game.height
 
-    Message.subscribe(LOADING_PROGRESS, this)
-    Message.subscribe(LOADING_COMPLETE, this)
-  }
-
-  onMessage(message: IMessage): void {
-    switch (message.code) {
-      case LOADING_COMPLETE:
+    this._loadingListeners = [
+      Subscriber.fromTopic(LOADING_PROGRESS, (event) => {
+        this.updateProgress(event.data)
+      }),
+      Subscriber.fromTopic(LOADING_COMPLETE, () => {
         this._game.switchScene(new GameScene(this._game))
-        break
-      case LOADING_PROGRESS:
-        this.updateProgress(message.context)
-        break
-      default:
-        break
+      }),
+    ]
+
+    for (const listener of this._loadingListeners) {
+      this._game.engine.eventBus.subscribe(listener)
     }
   }
 

@@ -9,6 +9,7 @@ import { TMXLoaderPlugin } from './Plugins/Tiled/TMXLoader'
 import { BatchRenderer } from '@pixi/core'
 import { Loader } from '@pixi/loaders'
 import { AnimationLoaderPlugin } from './Plugins/AnimationLoader'
+import { EventBus } from './Events/EventBus'
 
 declare global {
   interface Window {
@@ -31,6 +32,7 @@ export class Engine {
   private _game: Game
   private _stats: Stats
   private _loader: Loader
+  private _eventBus: EventBus
 
   constructor(
     canvas: HTMLCanvasElement,
@@ -42,8 +44,13 @@ export class Engine {
     this._gameArea = gameArea
     this._width = width
     this._height = height
+    this._eventBus = EventBus.getInstance()
 
     if (DEBUG_MODE) this._stats = new Stats()
+  }
+
+  get eventBus() {
+    return this._eventBus
   }
 
   get width() {

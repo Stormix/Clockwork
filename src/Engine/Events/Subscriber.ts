@@ -1,3 +1,4 @@
+import { v4 } from 'uuid'
 import { Event } from './Event'
 import { EventBus } from './EventBus'
 
@@ -32,5 +33,9 @@ export class Subscriber {
 
   public notify(event: Event): void {
     this._callback(event)
+  }
+
+  public static fromTopic(topic: string, callback: EventCallback): Subscriber {
+    return new Subscriber(v4(), topic, callback)
   }
 }

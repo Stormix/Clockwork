@@ -1,6 +1,3 @@
-import { Message } from '../Messaging/Message'
-import { InputEventMessage } from './InputEventMessage'
-
 export class InputManager {
   private constructor() {}
 
@@ -24,11 +21,11 @@ export class InputManager {
 
   private static onKeyDown(event: KeyboardEvent) {
     InputManager._keys[event.code] = true
-    Message.send(InputEventMessage.KeyDown, null, event)
+    // Message.send(InputEventMessage.KeyDown, null, event)
   }
 
   private static onKeyUp(event: KeyboardEvent) {
     InputManager._keys[event.code] = false
-    Message.send(InputEventMessage.KeyUp, null, event)
+    // Message.send(InputEventMessage.KeyUp, null, event)
   }
 }
